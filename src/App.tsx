@@ -1,12 +1,10 @@
 import React from 'react';
+import Main from './Views/Main';
 
 const App: React.FC<Record<string, never>> = () => {
   return (
     <>
-      <h1>Hello world</h1>
-      <a href="#" target="_blank">
-        Click me
-      </a>
+      <Main />
     </>
   );
 };

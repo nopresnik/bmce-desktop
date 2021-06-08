@@ -1,3 +1,47 @@
 // Themes customs here
 
 @import '~bootstrap/scss/bootstrap';
+
+// Disable text selection
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.main-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .stats-list {
+    .card-header {
+      padding: 2px 10px;
+    }
+    .list-group-item {
+      padding: 2px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+fieldset {
+  margin-top: 5px;
+  border: 1px solid black;
+  border-top: 1px solid black !important;
+
+  legend {
+    margin-left: 5px;
+    width: auto;
+  }
+}
