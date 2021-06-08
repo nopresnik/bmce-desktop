@@ -26,6 +26,7 @@
  * ```
  */
 
+import './index.scss';
 import './index-react.tsx';
 
 // console.log(
