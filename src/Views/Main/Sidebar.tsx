@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import StatPill from '../../Components/StatPill';
 import logo from '../../Images/logo.png';
 
@@ -15,25 +15,19 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <ListGroup variant="flush">
           <ListGroup.Item>
             In progress
-            <StatPill variant="success" content={231} />
+            <StatPill variant="success" content={0} />
           </ListGroup.Item>
           <ListGroup.Item>
             On hold
-            <Badge pill variant="secondary">
-              231
-            </Badge>
+            <StatPill variant="secondary" content={0} />
           </ListGroup.Item>
           <ListGroup.Item>
             Awaiting invoicing
-            <Badge pill variant="warning">
-              231
-            </Badge>
+            <StatPill variant="warning" content={0} />
           </ListGroup.Item>
           <ListGroup.Item>
             Unpaid invoices
-            <Badge pill variant="danger">
-              231
-            </Badge>
+            <StatPill variant="danger" content={0} />
           </ListGroup.Item>
         </ListGroup>
       </Card>
@@ -43,15 +37,11 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <ListGroup variant="flush">
           <ListGroup.Item>
             Month (June)
-            <Badge pill variant="success">
-              758
-            </Badge>
+            <StatPill variant="success" content={0} />
           </ListGroup.Item>
           <ListGroup.Item>
             Year (2021)
-            <Badge pill variant="secondary">
-              23158
-            </Badge>
+            <StatPill variant="secondary" content={0} />
           </ListGroup.Item>
         </ListGroup>
       </Card>

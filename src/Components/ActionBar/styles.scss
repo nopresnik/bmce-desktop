@@ -1,0 +1,28 @@
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    margin-right: 5px;
+    white-space: nowrap;
+  }
+
+  .divider {
+    margin-right: 5px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .input-group {
+    flex: none;
+    width: auto;
+
+    input {
+      flex: none;
+      width: 150px;
+    }
+
+    button {
+      display: inline-block;
+    }
+  }
+}

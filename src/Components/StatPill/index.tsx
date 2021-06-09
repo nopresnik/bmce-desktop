@@ -8,7 +8,7 @@ type StatPillProps = {
 
 const StatPill: React.FC<StatPillProps> = ({ variant, content }) => {
   return (
-    <Badge pill variant={variant}>
+    <Badge pill variant={variant} className="rounded-pill">
       {content}
     </Badge>
   );

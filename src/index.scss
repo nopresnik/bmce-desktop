@@ -1,5 +1,8 @@
 // Themes customs here
 
+$body-bg: #f3f6f3;
+$enable-rounded: false;
+
 @import '~bootstrap/scss/bootstrap';
 
 // Disable text selection
@@ -31,7 +34,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: inherit;
     }
+    background: inherit;
   }
 }
 

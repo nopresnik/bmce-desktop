@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import ActionBar from '../../Components/ActionBar';
 import Sidebar from './Sidebar';
 
 const Main: React.FC<Record<string, never>> = () => {
@@ -10,7 +11,9 @@ const Main: React.FC<Record<string, never>> = () => {
           <Col xl={2} md={3} className="d-none d-md-block main-sidebar">
             <Sidebar />
           </Col>
-          <Col xl={10} md={9} sm={12}></Col>
+          <Col xl={10} md={9} sm={12} className="">
+            <ActionBar />
+          </Col>
         </Row>
       </Container>
     </>
