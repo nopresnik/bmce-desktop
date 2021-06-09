@@ -13,8 +13,13 @@ rules.push({
 });
 
 rules.push({
-  test: /\.(png|jpg|jpeg|gif)$/i,
+  test: /\.(svg|png|jpg|jpeg|gif)$/i,
   type: 'asset/resource',
+});
+
+rules.push({
+  test: /\.(woff|woff2|ttf|otf|eot)$/,
+  use: [{ loader: 'file-loader' }],
 });
 
 module.exports = {

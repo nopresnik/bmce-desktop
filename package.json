@@ -89,8 +89,11 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "4.6.0",
     "electron-squirrel-startup": "^1.0.0",
+    "primeicons": "^4.1.0",
+    "primereact": "^6.3.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2"
