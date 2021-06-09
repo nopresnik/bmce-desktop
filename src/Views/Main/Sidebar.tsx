@@ -1,5 +1,6 @@
 import React from 'react';
 import { Badge, Card, ListGroup } from 'react-bootstrap';
+import StatPill from '../../Components/StatPill';
 import logo from '../../Images/logo.png';
 
 const Sidebar: React.FC<Record<string, never>> = () => {
@@ -14,9 +15,7 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <ListGroup variant="flush">
           <ListGroup.Item>
             In progress
-            <Badge pill variant="success">
-              231
-            </Badge>
+            <StatPill variant="success" content={231} />
           </ListGroup.Item>
           <ListGroup.Item>
             On hold
