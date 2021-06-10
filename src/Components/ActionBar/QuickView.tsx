@@ -5,7 +5,7 @@ const QuickView: React.FC<Record<string, never>> = () => {
   return (
     <InputGroup>
       <FormControl placeholder="Job #" />
-      <Button variant="secondary">Quick View</Button>
+      <Button variant="secondary">Open</Button>
     </InputGroup>
   );
 };

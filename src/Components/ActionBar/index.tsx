@@ -10,9 +10,9 @@ const ActionBar: React.FC<Record<string, never>> = () => {
       <Button variant="secondary">Advanced Search</Button>
       <div className="divider"></div>
       <Button variant="secondary">Create Job</Button>
-      <Button variant="secondary">Refresh Lists</Button>
+      <Button variant="secondary">Refresh</Button>
       <Button variant="secondary" className="mr-0">
-        Client Address Book
+        Client Book
       </Button>
     </div>
   );

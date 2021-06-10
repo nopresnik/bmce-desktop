@@ -12,12 +12,7 @@ const Main: React.FC<Record<string, never>> = () => {
           <Col xl={2} md={3} className="d-none d-md-block main-sidebar">
             <Sidebar />
           </Col>
-          <Col
-            xl={10}
-            md={9}
-            sm={12}
-            className="vh-100 border d-flex flex-column"
-          >
+          <Col xl={10} md={9} sm={12} className="vh-100 d-flex flex-column">
             <ActionBar />
             <ActiveList />
           </Col>
