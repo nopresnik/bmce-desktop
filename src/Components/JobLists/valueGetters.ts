@@ -1,15 +1,4 @@
-interface RowData {
-  data: {
-    date: Date;
-    location: {
-      line1: string;
-      line2: string;
-      city: string;
-      state: string;
-      postcode: string;
-    };
-  };
-}
+import RowData from '../../Types/IRowData';
 
 const dateParser = (params: RowData): string => {
   const { date } = params.data;

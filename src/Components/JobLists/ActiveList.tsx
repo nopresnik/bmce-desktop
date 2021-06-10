@@ -3,7 +3,8 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import axios from 'axios';
 import React, { useState } from 'react';
-import valueGetters from './valueGetters';
+import gridevents from './gridevents';
+import valueGetters from './valuegetters';
 
 const ActiveList: React.FC<Record<string, never>> = () => {
   const [gridApi, setGridApi] = useState(null);
@@ -36,6 +37,7 @@ const ActiveList: React.FC<Record<string, never>> = () => {
         rowData={rowData}
         onGridReady={onGridReady}
         onFirstDataRendered={firstDataRendered}
+        gridOptions={{ onCellDoubleClicked: gridevents.openJob }}
       >
         <AgGridColumn
           field="date"
