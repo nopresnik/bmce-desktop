@@ -174,7 +174,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
 
   const renderPricingList = () =>
     job.pricing.map((element, index) => (
-      <tr>
+      <tr key={index}>
         <td>{element.description}</td>
         <td className="text-right">${Number(element.price).toFixed(2)}</td>
         <td>
@@ -271,19 +271,37 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
 };
 
 const JobPrevRefForm: React.FC<PropTypes> = (props) => {
-  const { job } = props;
+  const { job, setJob } = props;
+
+  const [newRef, setNewRef] = useState('');
 
   const renderPrevRefList = () =>
-    job.previousRefs.map((ref) => (
-      <tr>
+    job.previousRefs.map((ref, index) => (
+      <tr key={index}>
         <td>{ref}</td>
         <td>
-          <a href="" onClick={(e) => e.preventDefault()}>
+          <a
+            href=""
+            onClick={(e) => {
+              e.preventDefault();
+              const newList = job.previousRefs;
+              newList.splice(index, 1);
+              setJob({ ...job, previousRefs: newList });
+            }}
+          >
             <i className="bi-dash-lg text-danger"></i>
           </a>
         </td>
       </tr>
     ));
+
+  const handleAddNewRef = (e: any) => {
+    e.preventDefault();
+    const updatedList = job.previousRefs;
+    updatedList.push(parseInt(newRef));
+    setJob({ ...job, previousRefs: updatedList });
+    setNewRef('');
+  };
 
   return (
     <Form.Group>
@@ -299,10 +317,20 @@ const JobPrevRefForm: React.FC<PropTypes> = (props) => {
         <tfoot>
           <tr>
             <td className="w-100">
-              <Form.Control type="select" size="sm" />
+              <Form.Control
+                type="select"
+                size="sm"
+                value={newRef}
+                onChange={(e) => setNewRef(e.target.value)}
+                onKeyUp={(e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter') {
+                    handleAddNewRef(e);
+                  }
+                }}
+              />
             </td>
             <td>
-              <a href="" onClick={(e) => e.preventDefault()}>
+              <a href="" onClick={handleAddNewRef}>
                 <i className="bi-plus-lg text-success"></i>
               </a>
             </td>

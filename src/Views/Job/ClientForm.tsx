@@ -20,6 +20,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             placeholder="Name"
             size="sm"
             value={job.client.name || ''}
+            readOnly
           />
         </Form.Group>
         <Form.Group>
@@ -77,6 +78,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             placeholder="Phone"
             size="sm"
             value={job.client.phone || ''}
+            readOnly
           />
         </Form.Group>
         <Form.Group>
@@ -85,6 +87,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             placeholder="Mobile"
             size="sm"
             value={job.client.mobile || ''}
+            readOnly
           />
         </Form.Group>
         <Form.Group>
@@ -93,6 +96,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             placeholder="Email"
             size="sm"
             value={job.client.email || ''}
+            readOnly
           />
         </Form.Group>
         <Form.Group>
@@ -103,6 +107,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             placeholder="Notes"
             size="sm"
             value={job.client.notes || ''}
+            readOnly
           />
         </Form.Group>
       </Form>
