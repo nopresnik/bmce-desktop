@@ -1,5 +1,6 @@
 // TODO: Add type safety.  Remove use of any in future
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { KeyCode } from 'ag-grid-community';
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, Table } from 'react-bootstrap';
 import Address from '../../Types/IAddress';
@@ -195,6 +196,14 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
   const getTotalPrice = () =>
     job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2);
 
+  const handlePriceUpdate = (e: any) => {
+    e.preventDefault();
+    const updatedList = job.pricing;
+    updatedList.push(newPrice);
+    setJob({ ...job, pricing: updatedList });
+    setNewPrice(emptyPrice);
+  };
+
   return (
     <Form.Group>
       <Form.Label>Pricing</Form.Label>
@@ -231,19 +240,15 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
                     price: parseInt(e.target.value),
                   })
                 }
+                onKeyUp={(e: React.KeyboardEvent) => {
+                  if (e.key === 'Enter') {
+                    handlePriceUpdate(e);
+                  }
+                }}
               />
             </td>
             <td>
-              <a
-                href=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  const updatedList = job.pricing;
-                  updatedList.push(newPrice);
-                  setJob({ ...job, pricing: updatedList });
-                  setNewPrice(emptyPrice);
-                }}
-              >
+              <a href="" onClick={handlePriceUpdate}>
                 <i className="bi-plus-lg text-success"></i>
               </a>
             </td>
