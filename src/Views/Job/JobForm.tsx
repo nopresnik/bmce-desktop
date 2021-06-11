@@ -5,6 +5,7 @@ import { Col, Form, Row, Table } from 'react-bootstrap';
 import Address from '../../Types/IAddress';
 import Job from '../../Types/IJob';
 import JobStatus from '../../Types/IJobStatus';
+import Price from '../../Types/IPrice';
 
 interface PropTypes {
   job: Job;
@@ -161,7 +162,14 @@ const JobNotesForm: React.FC<PropTypes> = (props) => {
 };
 
 const JobPricingForm: React.FC<PropTypes> = (props) => {
-  const { job } = props;
+  const { job, setJob } = props;
+
+  const emptyPrice: Price = { description: '', price: 0 };
+
+  const [newPrice, setNewPrice] = useState<Price>({
+    description: '',
+    price: 0,
+  });
 
   const renderPricingList = () =>
     job.pricing.map((element) => (
@@ -194,13 +202,40 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
           {renderPricingList()}
           <tr>
             <td>
-              <Form.Control type="select" size="sm" />
+              <Form.Control
+                type="select"
+                size="sm"
+                value={newPrice.description || ''}
+                onChange={(e) =>
+                  setNewPrice({ ...newPrice, description: e.target.value })
+                }
+              />
             </td>
             <td width="90">
-              <Form.Control className="text-right" type="text" size="sm" />
+              <Form.Control
+                className="text-right"
+                type="text"
+                size="sm"
+                value={newPrice.price || ''}
+                onChange={(e) =>
+                  setNewPrice({
+                    ...newPrice,
+                    price: parseInt(e.target.value),
+                  })
+                }
+              />
             </td>
             <td>
-              <a href="" onClick={(e) => e.preventDefault()}>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  const updatedList = job.pricing;
+                  updatedList.push(newPrice);
+                  setJob({ ...job, pricing: updatedList });
+                  setNewPrice(emptyPrice);
+                }}
+              >
                 <i className="bi-plus-lg text-success"></i>
               </a>
             </td>
