@@ -3,7 +3,6 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useState } from 'react';
 import Api from '../../Api';
-import Job from '../../Types/IJob';
 import gridevents from './gridevents';
 import valueGetters from './valuegetters';
 

@@ -8,7 +8,7 @@ export default interface Job {
   date: Date;
   client: Client;
   location: Address;
-  desription: string;
+  description: string;
   notes: string;
   previousRefs: [number];
   pricing: [Price];

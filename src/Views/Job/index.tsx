@@ -6,19 +6,14 @@ import ClientForm from './ClientForm';
 import JobForm from './JobForm';
 import Job from '../../Types/IJob';
 
-interface Params {
-  jobID: string;
-}
-
 const Job: React.FC<Record<string, never>> = () => {
-  const { jobID } = useParams<Params>();
+  const { jobID } = useParams<{ jobID: string }>();
 
   const [job, setJob] = useState<Job>();
 
   useEffect(() => {
     Api.getJob(parseInt(jobID)).then(({ data }) => {
       setJob(data.data);
-      console.log(data.data);
     });
   }, []);
 
@@ -32,7 +27,7 @@ const Job: React.FC<Record<string, never>> = () => {
         </Col>
         <Col sm={8}>
           <div className="border my-3 p-2">
-            <JobForm />
+            <JobForm job={job} setJob={setJob} />
           </div>
         </Col>
       </Row>
