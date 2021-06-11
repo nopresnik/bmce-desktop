@@ -172,12 +172,20 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
   });
 
   const renderPricingList = () =>
-    job.pricing.map((element) => (
+    job.pricing.map((element, index) => (
       <tr>
         <td>{element.description}</td>
         <td className="text-right">${Number(element.price).toFixed(2)}</td>
         <td>
-          <a href="" onClick={(e) => e.preventDefault()}>
+          <a
+            href=""
+            onClick={(e) => {
+              e.preventDefault();
+              const newList: [Price] = job.pricing;
+              newList.splice(index, 1);
+              setJob({ ...job, pricing: newList });
+            }}
+          >
             <i className="bi-dash-lg text-danger"></i>
           </a>
         </td>
