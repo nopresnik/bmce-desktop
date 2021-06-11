@@ -1,6 +1,8 @@
+import Address from './IAddress';
+
 export default interface Client {
   name: string;
-  address: IAddress;
+  address: Address;
   email: string;
   mobile: string;
   phone: string;

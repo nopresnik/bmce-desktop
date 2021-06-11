@@ -1,4 +1,4 @@
 export default interface APIResult<T> {
-  success: boolean;
+  success?: boolean;
   data: T;
 }

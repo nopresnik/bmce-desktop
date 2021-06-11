@@ -1,6 +1,8 @@
-import RowData from '../../Types/IRowData';
+import APIResult from '../../Types/IAPIResult';
+import Job from '../../Types/IJob';
 
-const openJob = (params: RowData): void => {
+const openJob = (params: APIResult<Job>): void => {
+  console.log(params);
   window.open(
     `#/job/${params.data.jobID}`,
     'mywindow',

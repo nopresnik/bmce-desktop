@@ -1,12 +1,13 @@
-import RowData from '../../Types/IRowData';
+import APIResult from '../../Types/IAPIResult';
+import Job from '../../Types/IJob';
 
-const dateParser = (params: RowData): string => {
-  const { date } = params.data;
+const dateParser = (job: APIResult<Job>): string => {
+  const { date } = job.data;
   return new Date(date).toLocaleDateString();
 };
 
-const addressParser = (params: RowData): string => {
-  const { line1, line2, city, state, postcode } = params.data.location;
+const addressParser = (job: APIResult<Job>): string => {
+  const { line1, line2, city, state, postcode } = job.data.location;
   return `${line1 || ''} ${line2 || ''} ${city || ''} ${state || ''} ${
     postcode || ''
   }`;

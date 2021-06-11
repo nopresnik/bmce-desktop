@@ -1,8 +1,9 @@
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
-import axios from 'axios';
 import React, { useState } from 'react';
+import Api from '../../Api';
+import Job from '../../Types/IJob';
 import gridevents from './gridevents';
 import valueGetters from './valuegetters';
 
@@ -15,11 +16,7 @@ const ActiveList: React.FC<Record<string, never>> = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
 
-    const getActiveJobs = () => {
-      return axios.get('http://localhost:3001/api/jobs/s/active');
-    };
-
-    getActiveJobs().then(({ data }) => setRowData(data.data));
+    Api.getJobs('active').then(({ data }) => setRowData(data.data));
   };
 
   const firstDataRendered = () => {

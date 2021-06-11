@@ -1,7 +1,13 @@
 import React from 'react';
 import { Col, Form } from 'react-bootstrap';
+import Job from '../../Types/IJob';
 
-const ClientForm: React.FC<Record<string, never>> = () => {
+interface PropTypes {
+  job: Job;
+  setJob: React.Dispatch<React.SetStateAction<Job>>;
+}
+
+const ClientForm: React.FC<PropTypes> = (props) => {
   return (
     <>
       <h6>Client details</h6>
