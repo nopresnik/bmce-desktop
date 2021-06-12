@@ -9,7 +9,18 @@ const ActionBar: React.FC<Record<string, never>> = () => {
       <QuickView />
       <Button variant="secondary">Advanced Search</Button>
       <div className="divider"></div>
-      <Button variant="secondary">Create Job</Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          window.open(
+            `#/job/`,
+            '_blank',
+            `title=Create job,width=1080,height=720`
+          );
+        }}
+      >
+        Create Job
+      </Button>
       <Button variant="secondary">Refresh</Button>
       <Button variant="secondary" className="mr-0">
         Client Book

@@ -12,9 +12,11 @@ const Job: React.FC<Record<string, never>> = () => {
   const [job, setJob] = useState({} as Job);
 
   useEffect(() => {
-    Api.getJob(parseInt(jobID)).then(({ data }) => {
-      setJob(data.data);
-    });
+    if (jobID) {
+      Api.getJob(parseInt(jobID)).then(({ data }) => {
+        setJob(data.data);
+      });
+    }
   }, []);
 
   const handleSaveJob = async () => {
