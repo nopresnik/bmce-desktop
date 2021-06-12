@@ -14,8 +14,12 @@ const getJob = (jobID: number): Promise<AxiosResponse> =>
 const patchJob = (job: Job): Promise<AxiosResponse> =>
   axios.patch(API_URL + '/jobs/' + job.jobID, job);
 
+const postJob = (job: Job): Promise<AxiosResponse> =>
+  axios.post(API_URL + '/jobs', job);
+
 export default {
   getJobs,
   getJob,
   patchJob,
+  postJob,
 };

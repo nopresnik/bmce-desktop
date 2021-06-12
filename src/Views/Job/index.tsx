@@ -20,12 +20,21 @@ const Job: React.FC<Record<string, never>> = () => {
   }, []);
 
   const handleSaveJob = async () => {
-    const result = await Api.patchJob(job);
+    if (jobID) {
+      const result = await Api.patchJob(job);
 
-    if (result.data.success) {
-      window.close();
+      if (result.data.success) {
+        window.close();
+      } else {
+        alert('An unexpected error occured:' + result.data.message);
+      }
     } else {
-      alert('An unexpected error occured:' + result.data.message);
+      // Post new job
+      // TODO: Client
+      const ourjob = job;
+      ourjob.client = '60ba17d60d7420647d73e714';
+      const result = await Api.postJob(job);
+      console.log(result);
     }
   };
 

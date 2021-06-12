@@ -1,12 +1,12 @@
-import Client from './IClient';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Address from './IAddress';
-import Price from './IPrice';
 import JobStatus from './IJobStatus';
+import Price from './IPrice';
 
 export default interface Job {
   jobID: number;
   date: Date;
-  client: Client;
+  client: any;
   location: Address;
   description: string;
   notes: string;

@@ -194,7 +194,8 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
     ));
 
   const getTotalPrice = () =>
-    job.pricing && job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2);
+    (job.pricing && job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2)) ||
+    Number(0).toFixed(2);
 
   const handlePriceUpdate = (e: any) => {
     e.preventDefault();
