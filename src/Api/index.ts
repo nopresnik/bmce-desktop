@@ -17,9 +17,12 @@ const patchJob = (job: Job): Promise<AxiosResponse> =>
 const postJob = (job: Job): Promise<AxiosResponse> =>
   axios.post(API_URL + '/jobs', job);
 
+const getStats = (): Promise<AxiosResponse> => axios.get(API_URL + '/stats');
+
 export default {
   getJobs,
   getJob,
   patchJob,
   postJob,
+  getStats,
 };

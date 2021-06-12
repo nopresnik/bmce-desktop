@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
+import Api from '../../Api';
 import StatPill from '../../Components/StatPill';
 import logo from '../../Images/logo.png';
 
+interface Stats {
+  active: number;
+  hold: number;
+  awaitingInvoicing: number;
+  unpaid: number;
+  month: number;
+  year: number;
+}
+
 const Sidebar: React.FC<Record<string, never>> = () => {
+  const [stats, setStats] = useState<Stats>();
+
+  useEffect(() => {
+    Api.getStats().then(({ data }) => setStats(data.data));
+  }, []);
+
   return (
     <>
       <div className="logo-container pt-3">
@@ -15,19 +31,28 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <ListGroup variant="flush">
           <ListGroup.Item>
             In progress
-            <StatPill variant="success" content={0} />
+            <StatPill
+              variant="success"
+              content={(stats && stats.active) || 0}
+            />
           </ListGroup.Item>
           <ListGroup.Item>
             On hold
-            <StatPill variant="secondary" content={0} />
+            <StatPill
+              variant="secondary"
+              content={(stats && stats.hold) || 0}
+            />
           </ListGroup.Item>
           <ListGroup.Item>
             Awaiting invoicing
-            <StatPill variant="warning" content={0} />
+            <StatPill
+              variant="warning"
+              content={(stats && stats.awaitingInvoicing) || 0}
+            />
           </ListGroup.Item>
           <ListGroup.Item>
             Unpaid invoices
-            <StatPill variant="danger" content={0} />
+            <StatPill variant="danger" content={(stats && stats.unpaid) || 0} />
           </ListGroup.Item>
         </ListGroup>
       </Card>
@@ -37,11 +62,14 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <ListGroup variant="flush">
           <ListGroup.Item>
             Month (June)
-            <StatPill variant="success" content={0} />
+            <StatPill variant="success" content={(stats && stats.month) || 0} />
           </ListGroup.Item>
           <ListGroup.Item>
             Year (2021)
-            <StatPill variant="secondary" content={0} />
+            <StatPill
+              variant="secondary"
+              content={(stats && stats.year) || 0}
+            />
           </ListGroup.Item>
         </ListGroup>
       </Card>
