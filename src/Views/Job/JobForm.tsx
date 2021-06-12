@@ -53,10 +53,13 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
 
   useEffect(() => {
     setLocation(job.location);
+    console.log(job.location);
   }, []);
 
   useEffect(() => {
-    setJob({ ...job, location: { ...location } });
+    console.log('update', location);
+    console.log('update', job);
+    setJob({ ...job, location: { ...job.location, ...location } });
   }, [location]);
 
   return (
