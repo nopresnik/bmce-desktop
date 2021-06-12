@@ -1,6 +1,5 @@
 // TODO: Add type safety.  Remove use of any in future
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { KeyCode } from 'ag-grid-community';
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, Table } from 'react-bootstrap';
 import Address from '../../Types/IAddress';
@@ -68,7 +67,7 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
           type="text"
           placeholder="Address line 1"
           size="sm"
-          value={job.location.line1 || ''}
+          value={(job.location && job.location.line1) || ''}
           name="line1"
           onChange={(e) => handleChange(e, location, setLocation)}
         />
@@ -78,7 +77,7 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
           type="text"
           placeholder="Address line 2"
           size="sm"
-          value={job.location.line2 || ''}
+          value={(job.location && job.location.line2) || ''}
           name="line2"
           onChange={(e) => handleChange(e, location, setLocation)}
         />
@@ -88,7 +87,7 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
           type="text"
           placeholder="City"
           size="sm"
-          value={job.location.city || ''}
+          value={(job.location && job.location.city) || ''}
           name="city"
           onChange={(e) => handleChange(e, location, setLocation)}
         />
@@ -99,7 +98,7 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="State"
             size="sm"
-            value={job.location.state || ''}
+            value={(job.location && job.location.state) || ''}
             name="state"
             onChange={(e) => handleChange(e, location, setLocation)}
           />
@@ -109,7 +108,7 @@ const JobLocationForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Postcode"
             size="sm"
-            value={job.location.postcode || ''}
+            value={(job.location && job.location.postcode) || ''}
             name="postcode"
             onChange={(e) => handleChange(e, location, setLocation)}
           />
@@ -173,6 +172,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
   });
 
   const renderPricingList = () =>
+    job.pricing &&
     job.pricing.map((element, index) => (
       <tr key={index}>
         <td>{element.description}</td>
@@ -194,7 +194,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
     ));
 
   const getTotalPrice = () =>
-    job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2);
+    job.pricing && job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2);
 
   const handlePriceUpdate = (e: any) => {
     e.preventDefault();
@@ -276,6 +276,7 @@ const JobPrevRefForm: React.FC<PropTypes> = (props) => {
   const [newRef, setNewRef] = useState('');
 
   const renderPrevRefList = () =>
+    job.previousRefs &&
     job.previousRefs.map((ref, index) => (
       <tr key={index}>
         <td>{ref}</td>
@@ -379,7 +380,10 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
             <Form.Control
               type="date"
               size="sm"
-              value={new Date(job.dateCompleted).toISOString().substr(0, 10)}
+              value={
+                job.dateCompleted &&
+                new Date(job.dateCompleted).toISOString().substr(0, 10)
+              }
               name="dateCompleted"
               onChange={(e) => handleChange(e, job, setJob)}
               disabled={job.status !== JobStatus.Completed}

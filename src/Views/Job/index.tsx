@@ -9,7 +9,7 @@ import JobForm from './JobForm';
 const Job: React.FC<Record<string, never>> = () => {
   const { jobID } = useParams<{ jobID: string }>();
 
-  const [job, setJob] = useState<Job>();
+  const [job, setJob] = useState({} as Job);
 
   useEffect(() => {
     Api.getJob(parseInt(jobID)).then(({ data }) => {

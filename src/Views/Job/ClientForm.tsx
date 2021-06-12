@@ -19,7 +19,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Name"
             size="sm"
-            value={job.client.name || ''}
+            value={(job.client && job.client.name) || ''}
             readOnly
           />
         </Form.Group>
@@ -29,7 +29,10 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Address line 1"
             size="sm"
-            value={job.client.address.line1 || ''}
+            value={
+              (job.client && job.client.address && job.client.address.line1) ||
+              ''
+            }
             readOnly
           />
         </Form.Group>
@@ -38,7 +41,10 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Address line 2"
             size="sm"
-            value={job.client.address.line2 || ''}
+            value={
+              (job.client && job.client.address && job.client.address.line2) ||
+              ''
+            }
             readOnly
           />
         </Form.Group>
@@ -47,7 +53,10 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="City"
             size="sm"
-            value={job.client.address.city || ''}
+            value={
+              (job.client && job.client.address && job.client.address.city) ||
+              ''
+            }
             readOnly
           />
         </Form.Group>
@@ -57,7 +66,12 @@ const ClientForm: React.FC<PropTypes> = (props) => {
               type="text"
               placeholder="State"
               size="sm"
-              value={job.client.address.state || ''}
+              value={
+                (job.client &&
+                  job.client.address &&
+                  job.client.address.state) ||
+                ''
+              }
               readOnly
             />
           </Form.Group>
@@ -66,7 +80,12 @@ const ClientForm: React.FC<PropTypes> = (props) => {
               type="text"
               placeholder="Postcode"
               size="sm"
-              value={job.client.address.postcode || ''}
+              value={
+                (job.client &&
+                  job.client.address &&
+                  job.client.address.postcode) ||
+                ''
+              }
               readOnly
             />
           </Form.Group>
@@ -77,7 +96,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Phone"
             size="sm"
-            value={job.client.phone || ''}
+            value={(job.client && job.client.phone) || ''}
             readOnly
           />
         </Form.Group>
@@ -86,7 +105,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Mobile"
             size="sm"
-            value={job.client.mobile || ''}
+            value={(job.client && job.client.mobile) || ''}
             readOnly
           />
         </Form.Group>
@@ -95,7 +114,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Email"
             size="sm"
-            value={job.client.email || ''}
+            value={(job.client && job.client.email) || ''}
             readOnly
           />
         </Form.Group>
@@ -106,7 +125,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             type="text"
             placeholder="Notes"
             size="sm"
-            value={job.client.notes || ''}
+            value={(job.client && job.client.notes) || ''}
             readOnly
           />
         </Form.Group>
