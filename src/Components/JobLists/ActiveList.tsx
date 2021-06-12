@@ -4,7 +4,7 @@ import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useState } from 'react';
 import Api from '../../Api';
 import gridevents from './gridevents';
-import valueGetters from './valuegetters';
+import valueGetters from './valueGetters';
 
 const ActiveList: React.FC<Record<string, never>> = () => {
   const [gridApi, setGridApi] = useState(null);
