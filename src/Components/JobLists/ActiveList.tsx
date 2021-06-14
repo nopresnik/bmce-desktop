@@ -26,7 +26,7 @@ const ActiveList: React.FC<Record<string, never>> = () => {
 
   return (
     <div
-      className="ag-theme-alpine my-3"
+      className="ag-theme-alpine mb-3"
       style={{ height: '100%', width: '100%' }}
     >
       <AgGridReact
