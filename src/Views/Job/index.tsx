@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Api from '../../Api';
+import Client from '../../Types/IClient';
 import Job from '../../Types/IJob';
 import ClientForm from './ClientForm';
 import JobForm from './JobForm';
@@ -10,11 +11,13 @@ const Job: React.FC<Record<string, never>> = () => {
   const { jobID } = useParams<{ jobID: string }>();
 
   const [job, setJob] = useState({} as Job);
+  const [client, setClient] = useState({} as Client);
 
   useEffect(() => {
     if (jobID) {
       Api.getJob(parseInt(jobID)).then(({ data }) => {
         setJob(data.data);
+        setClient(data.data.client);
       });
     }
   }, []);
@@ -29,10 +32,13 @@ const Job: React.FC<Record<string, never>> = () => {
         alert('An unexpected error occured:' + result.data.message);
       }
     } else {
-      // Post new job
-      // TODO: Client
       const ourjob = job;
-      ourjob.client = '60ba17d60d7420647d73e714';
+      if (client._id) {
+        ourjob.client = client._id;
+      } else {
+        // TODO: IF CLIENT DOESN'T EXIST, CREATE IT
+        ourjob.client = '60ba17d60d7420647d73e714';
+      }
       const result = await Api.postJob(job);
       console.log(result);
     }
@@ -43,7 +49,12 @@ const Job: React.FC<Record<string, never>> = () => {
       <Row noGutters>
         <Col sm={4}>
           <div className="border my-3 mr-3 p-2">
-            <ClientForm job={job} setJob={setJob} />
+            <ClientForm
+              job={job}
+              setJob={setJob}
+              client={client}
+              setClient={setClient}
+            />
           </div>
         </Col>
         <Col sm={8}>

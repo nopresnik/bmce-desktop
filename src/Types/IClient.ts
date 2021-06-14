@@ -1,6 +1,7 @@
 import Address from './IAddress';
 
 export default interface Client {
+  _id?: string;
   name: string;
   address: Address;
   email: string;
