@@ -7,14 +7,14 @@ const App: React.FC<Record<string, never>> = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/*">
-          <Main />
-        </Route>
         <Route exact path="/job/">
           <Job />
         </Route>
         <Route exact path="/job/:jobID/">
           <Job />
+        </Route>
+        <Route exact path="/*">
+          <Main />
         </Route>
       </Switch>
     </Router>
