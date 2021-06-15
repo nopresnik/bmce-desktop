@@ -13,4 +13,10 @@ const addressParser = (job: APIResult<Job>): string => {
   }`;
 };
 
-export default { dateParser, addressParser };
+const statusParser = (job: APIResult<Job>): string => {
+  const { status } = job.data;
+
+  return status.charAt(0) + status.slice(1).toLowerCase();
+};
+
+export default { dateParser, addressParser, statusParser };
