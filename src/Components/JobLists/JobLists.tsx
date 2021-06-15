@@ -1,7 +1,7 @@
 import { AgGridColumn } from 'ag-grid-react/lib/agGridColumn';
 import React from 'react';
 import JobList from './JobList';
-import valueGetters from './valueGetters';
+import { default as valueGetters } from './valueGetters';
 
 const Active: React.FC<Record<string, never>> = () => {
   return (
@@ -77,13 +77,14 @@ const Hold: React.FC<Record<string, never>> = () => {
         valueGetter={valueGetters.addressParser}
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
+      <AgGridColumn field="notes" sortable={true} filter={true} />
     </JobList>
   );
 };
 
 const Invoicing: React.FC<Record<string, never>> = () => {
   return (
-    <JobList getJobs="awaitinginvoicing">
+    <JobList getJobs="invoicing">
       <AgGridColumn
         field="date"
         sortable={true}
@@ -116,6 +117,15 @@ const Invoicing: React.FC<Record<string, never>> = () => {
         valueGetter={valueGetters.addressParser}
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
+      <AgGridColumn
+        field="status"
+        sortable={true}
+        filter={true}
+        maxWidth={125}
+        minWidth={125}
+        suppressAutoSize={true}
+        valueGetter={valueGetters.statusParser}
+      />
     </JobList>
   );
 };
@@ -155,6 +165,24 @@ const Unpaid: React.FC<Record<string, never>> = () => {
         valueGetter={valueGetters.addressParser}
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
+      <AgGridColumn
+        field="invoiced"
+        headerName="Invoiced"
+        sortable={true}
+        filter={true}
+        maxWidth={110}
+        minWidth={110}
+        suppressAutoSize={true}
+      />
+      <AgGridColumn
+        field="invoicePaid"
+        headerName="Paid"
+        sortable={true}
+        filter={true}
+        maxWidth={105}
+        minWidth={105}
+        suppressAutoSize={true}
+      />
     </JobList>
   );
 };
@@ -211,24 +239,6 @@ const Completed: React.FC<Record<string, never>> = () => {
         filter={true}
         maxWidth={100}
         minWidth={100}
-        suppressAutoSize={true}
-      />
-      <AgGridColumn
-        field="invoiced"
-        headerName="Invoiced"
-        sortable={true}
-        filter={true}
-        maxWidth={110}
-        minWidth={110}
-        suppressAutoSize={true}
-      />
-      <AgGridColumn
-        field="invoicePaid"
-        headerName="Paid"
-        sortable={true}
-        filter={true}
-        maxWidth={105}
-        minWidth={105}
         suppressAutoSize={true}
       />
     </JobList>
