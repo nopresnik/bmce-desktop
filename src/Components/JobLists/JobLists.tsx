@@ -118,13 +118,15 @@ const Invoicing: React.FC<Record<string, never>> = () => {
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
       <AgGridColumn
-        field="status"
+        field="totalPrice"
+        headerName="Price"
         sortable={true}
         filter={true}
-        maxWidth={125}
-        minWidth={125}
+        maxWidth={110}
+        minWidth={110}
         suppressAutoSize={true}
-        valueGetter={valueGetters.statusParser}
+        valueGetter={valueGetters.priceParser}
+        type="rightAligned"
       />
     </JobList>
   );
@@ -166,22 +168,15 @@ const Unpaid: React.FC<Record<string, never>> = () => {
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
       <AgGridColumn
-        field="invoiced"
-        headerName="Invoiced"
+        field="totalPrice"
+        headerName="Price"
         sortable={true}
         filter={true}
         maxWidth={110}
         minWidth={110}
         suppressAutoSize={true}
-      />
-      <AgGridColumn
-        field="invoicePaid"
-        headerName="Paid"
-        sortable={true}
-        filter={true}
-        maxWidth={105}
-        minWidth={105}
-        suppressAutoSize={true}
+        valueGetter={valueGetters.priceParser}
+        type="rightAligned"
       />
     </JobList>
   );

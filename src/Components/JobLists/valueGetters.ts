@@ -19,4 +19,10 @@ const statusParser = (job: APIResult<Job>): string => {
   return status.charAt(0) + status.slice(1).toLowerCase();
 };
 
-export default { dateParser, addressParser, statusParser };
+const priceParser = (job: APIResult<Job>): string => {
+  const { totalPrice } = job.data;
+
+  return '$' + totalPrice.toLocaleString();
+};
+
+export default { dateParser, addressParser, statusParser, priceParser };

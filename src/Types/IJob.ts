@@ -12,6 +12,7 @@ export default interface Job {
   notes: string;
   previousRefs: [number];
   pricing: [Price];
+  totalPrice?: number;
   status: JobStatus;
   dateCompleted: Date;
   invoiced: boolean;
