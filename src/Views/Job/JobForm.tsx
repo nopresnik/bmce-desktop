@@ -150,7 +150,7 @@ const JobNotesForm: React.FC<PropTypes> = (props) => {
         <Form.Label>Purchase Order Number</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Additional notes"
+          placeholder="Purchase Order Number"
           size="sm"
           value={job.purchaseOrder || ''}
           name="purchaseOrder"
