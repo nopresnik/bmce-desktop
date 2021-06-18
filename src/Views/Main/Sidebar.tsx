@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import Api from '../../Api';
 import StatPill from '../../Components/StatPill';
-import logo from '../../Images/logo.png';
+import logo from '../../Images/bmlogo.png';
 
 interface Stats {
   active: number;
@@ -23,7 +23,7 @@ const Sidebar: React.FC<Record<string, never>> = () => {
   return (
     <>
       <div className="logo-container pt-3">
-        <img src={logo} className="logo" alt="company logo" />
+        <img src={logo} height="40" className="logo" alt="company logo" />
       </div>
 
       <Card className="stats-list mt-3">
