@@ -23,7 +23,7 @@ const JobNavBar: React.FC<Record<string, never>> = () => {
     <Nav variant="tabs" defaultActiveKey="#/" className="mt-1">
       <Nav.Item>
         <Nav.Link href="#/">
-          In Progress
+          Active
           <StatPill
             variant="secondary"
             content={(stats && stats.active) || 0}

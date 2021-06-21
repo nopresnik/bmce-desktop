@@ -30,7 +30,7 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <Card.Header>Jobs overview</Card.Header>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            In progress
+            Active
             <StatPill
               variant="success"
               content={(stats && stats.active) || 0}
