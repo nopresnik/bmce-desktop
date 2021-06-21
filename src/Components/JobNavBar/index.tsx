@@ -20,7 +20,7 @@ const JobNavBar: React.FC<Record<string, never>> = () => {
   }, []);
 
   return (
-    <Nav variant="tabs" defaultActiveKey="#/" className="mt-1">
+    <Nav variant="tabs" defaultActiveKey="#/" className="mt-1 job-nav-bar">
       <Nav.Item>
         <Nav.Link href="#/">
           Active

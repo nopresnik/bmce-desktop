@@ -68,3 +68,9 @@ fieldset {
     width: auto;
   }
 }
+
+.job-nav-bar {
+  a.nav-link.active {
+    font-weight: bold;
+  }
+}
