@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import ClientBook from './Views/ClientBook';
 import Job from './Views/Job';
 import Main from './Views/Main';
 
@@ -7,6 +8,9 @@ const App: React.FC<Record<string, never>> = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/clients/">
+          <ClientBook />
+        </Route>
         <Route exact path="/job/">
           <Job />
         </Route>

@@ -22,7 +22,17 @@ const ActionBar: React.FC<Record<string, never>> = () => {
         Create Job
       </Button>
       <Button variant="secondary">Refresh</Button>
-      <Button variant="secondary" className="mr-0">
+      <Button
+        variant="secondary"
+        className="mr-0"
+        onClick={() => {
+          window.open(
+            `#/clients/`,
+            '_blank',
+            `title=Client Book,width=720,height=720`
+          );
+        }}
+      >
         Client Book
       </Button>
     </div>
