@@ -182,7 +182,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
             href=""
             onClick={(e) => {
               e.preventDefault();
-              const newList: [Price] = job.pricing;
+              const newList: Price[] = job.pricing;
               newList.splice(index, 1);
               setJob({ ...job, pricing: newList });
             }}
@@ -199,7 +199,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
 
   const handlePriceUpdate = (e: any) => {
     e.preventDefault();
-    const updatedList = job.pricing;
+    const updatedList = job.pricing || [];
     updatedList.push(newPrice);
     setJob({ ...job, pricing: updatedList });
     setNewPrice(emptyPrice);
@@ -299,7 +299,7 @@ const JobPrevRefForm: React.FC<PropTypes> = (props) => {
 
   const handleAddNewRef = (e: any) => {
     e.preventDefault();
-    const updatedList = job.previousRefs;
+    const updatedList = job.previousRefs || [];
     updatedList.push(parseInt(newRef));
     setJob({ ...job, previousRefs: updatedList });
     setNewRef('');

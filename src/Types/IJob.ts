@@ -10,8 +10,8 @@ export default interface Job {
   location: Address;
   description: string;
   notes: string;
-  previousRefs: [number];
-  pricing: [Price];
+  previousRefs: number[];
+  pricing: Price[];
   totalPrice?: number;
   status: JobStatus;
   dateCompleted: Date;
