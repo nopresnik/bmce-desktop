@@ -37,7 +37,9 @@ const Job: React.FC<Record<string, never>> = () => {
         ourjob.client = client._id;
       } else {
         // TODO: IF CLIENT DOESN'T EXIST, CREATE IT
-        ourjob.client = '60ba17d60d7420647d73e714';
+        // ourjob.client = '60ba17d60d7420647d73e714';
+        const newClient = await Api.createClient(client);
+        ourjob.client = newClient._id;
       }
       const result = await Api.postJob(job);
       console.log(result);

@@ -30,6 +30,10 @@ const getClient = (id: string): Promise<Client> => {
   return axios.get(API_URL + '/clients/' + id).then(({ data }) => data.data);
 };
 
+const createClient = (client: Client): Promise<Client> => {
+  return axios.post(API_URL + '/clients', client).then(({ data }) => data.data);
+};
+
 export default {
   getJobs,
   getJob,
@@ -38,4 +42,5 @@ export default {
   getStats,
   getClients,
   getClient,
+  createClient,
 };

@@ -47,18 +47,23 @@ const ClientForm: React.FC<PropTypes> = (props) => {
     if (client._id) {
       setJob({ ...job, client: client._id });
     }
-    console.log(job);
   }, [client]);
+
+  // useEffect(() => {
+  //   if (!client._id) {
+  //     setClient({ ...client, name: clientText });
+  //   }
+  // }, [clientText]);
 
   const handleOnClientSelect = () => {
     const filteredClients = dbClients.filter(
       (client) => client.name === clientText
     );
 
-    if (filteredClients.length && clientText) {
+    if (filteredClients.length && client.name) {
       setClient(filteredClients[0]);
     } else {
-      setClient({} as Client);
+      setClient({ name: client.name } as Client);
     }
   };
 
@@ -74,9 +79,10 @@ const ClientForm: React.FC<PropTypes> = (props) => {
               list="client-list"
               placeholder="Name"
               size="sm"
-              // value={(job.client && job.client.name) || ''}
-              value={clientText}
-              onChange={(e) => setClientText(e.target.value)}
+              value={client && client.name}
+              // onChange={(e) => setClientText(e.target.value)}
+              name="name"
+              onChange={(e) => handleChange(e, client, setClient)}
               onBlur={handleOnClientSelect}
               isInvalid={client._id === undefined && clientText !== ''}
             />
