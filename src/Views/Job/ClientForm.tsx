@@ -1,6 +1,9 @@
+// TODO: Add type safety.  Remove use of any in future
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { Col, Form, InputGroup } from 'react-bootstrap';
 import Api from '../../Api';
+import Address from '../../Types/IAddress';
 import Client from '../../Types/IClient';
 import Job from '../../Types/IJob';
 
@@ -10,6 +13,12 @@ interface PropTypes {
   client: Client;
   setClient: React.Dispatch<React.SetStateAction<Client>>;
 }
+
+const handleChange = (e: any, data: any, setData: any) => {
+  const fieldName: string = e.target.name;
+  const value: string = e.target.value;
+  setData({ ...data, [fieldName]: value });
+};
 
 const ClientForm: React.FC<PropTypes> = (props) => {
   const { job, setJob, client, setClient } = props;
@@ -38,6 +47,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
     if (client._id) {
       setJob({ ...job, client: client._id });
     }
+    console.log(job);
   }, [client]);
 
   const handleOnClientSelect = () => {
@@ -81,56 +91,14 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Address line 1"
-            size="sm"
-            value={(client && client.address && client.address.line1) || ''}
-            readOnly={client._id !== undefined}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            type="text"
-            placeholder="Address line 2"
-            size="sm"
-            value={(client && client.address && client.address.line2) || ''}
-            readOnly={client._id !== undefined}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            type="text"
-            placeholder="City"
-            size="sm"
-            value={(client && client.address && client.address.city) || ''}
-            readOnly={client._id !== undefined}
-          />
-        </Form.Group>
-        <Form.Row>
-          <Form.Group as={Col} sm={8}>
-            <Form.Control
-              type="text"
-              placeholder="State"
-              size="sm"
-              value={(client && client.address && client.address.state) || ''}
-              readOnly={client._id !== undefined}
-            />
-          </Form.Group>
-          <Form.Group as={Col} sm={4}>
-            <Form.Control
-              type="text"
-              placeholder="Postcode"
-              size="sm"
-              value={
-                (client && client.address && client.address.postcode) || ''
-              }
-              readOnly={client._id !== undefined}
-            />
-          </Form.Group>
-        </Form.Row>
+
+        <ClientLocationForm
+          job={job}
+          setJob={setJob}
+          client={client}
+          setClient={setClient}
+        />
+
         <Form.Group>
           <Form.Label>Contact Details</Form.Label>
           <Form.Control
@@ -139,6 +107,8 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             size="sm"
             value={(client && client.phone) || ''}
             readOnly={client._id !== undefined}
+            name="phone"
+            onChange={(e) => handleChange(e, client, setClient)}
           />
         </Form.Group>
         <Form.Group>
@@ -148,6 +118,8 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             size="sm"
             value={(client && client.mobile) || ''}
             readOnly={client._id !== undefined}
+            name="mobile"
+            onChange={(e) => handleChange(e, client, setClient)}
           />
         </Form.Group>
         <Form.Group>
@@ -157,6 +129,8 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             size="sm"
             value={(client && client.email) || ''}
             readOnly={client._id !== undefined}
+            name="email"
+            onChange={(e) => handleChange(e, client, setClient)}
           />
         </Form.Group>
         <Form.Group>
@@ -168,9 +142,87 @@ const ClientForm: React.FC<PropTypes> = (props) => {
             size="sm"
             value={(client && client.notes) || ''}
             readOnly={client._id !== undefined}
+            name="notes"
+            onChange={(e) => handleChange(e, client, setClient)}
           />
         </Form.Group>
       </Form>
+    </>
+  );
+};
+
+const ClientLocationForm: React.FC<PropTypes> = (props) => {
+  const { client, setClient } = props;
+  const [location, setLocation] = useState<Address>();
+
+  useEffect(() => {
+    setLocation(client.address);
+  }, []);
+
+  useEffect(() => {
+    setClient({ ...client, address: { ...client.address, ...location } });
+  }, [location]);
+
+  return (
+    <>
+      <Form.Group>
+        <Form.Label>Address</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Address line 1"
+          size="sm"
+          value={(client.address && client.address.line1) || ''}
+          readOnly={client._id !== undefined}
+          name="line1"
+          onChange={(e) => handleChange(e, location, setLocation)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Control
+          type="text"
+          placeholder="Address line 2"
+          size="sm"
+          value={(client.address && client.address.line2) || ''}
+          readOnly={client._id !== undefined}
+          name="line2"
+          onChange={(e) => handleChange(e, location, setLocation)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Control
+          type="text"
+          placeholder="City"
+          size="sm"
+          value={(client.address && client.address.city) || ''}
+          readOnly={client._id !== undefined}
+          name="city"
+          onChange={(e) => handleChange(e, location, setLocation)}
+        />
+      </Form.Group>
+      <Form.Row>
+        <Form.Group as={Col} sm={8}>
+          <Form.Control
+            type="text"
+            placeholder="State"
+            size="sm"
+            value={(client.address && client.address.state) || ''}
+            readOnly={client._id !== undefined}
+            name="state"
+            onChange={(e) => handleChange(e, location, setLocation)}
+          />
+        </Form.Group>
+        <Form.Group as={Col} sm={4}>
+          <Form.Control
+            type="text"
+            placeholder="Postcode"
+            size="sm"
+            value={(client.address && client.address.postcode) || ''}
+            readOnly={client._id !== undefined}
+            name="postcode"
+            onChange={(e) => handleChange(e, location, setLocation)}
+          />
+        </Form.Group>
+      </Form.Row>
     </>
   );
 };
