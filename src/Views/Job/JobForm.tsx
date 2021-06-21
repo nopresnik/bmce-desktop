@@ -376,7 +376,13 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
           id="completed"
           label="Completed"
           checked={testStatus(JobStatus.Completed)}
-          onChange={() => setJob({ ...job, status: JobStatus.Completed })}
+          onChange={() => {
+            setJob({
+              ...job,
+              status: JobStatus.Completed,
+              dateCompleted: new Date(),
+            });
+          }}
         />
         <Form.Row className="d-flex align-center">
           <Form.Group as={Col}>
