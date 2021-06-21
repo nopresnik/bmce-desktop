@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import APIResult from '../Types/IAPIResult';
 import Client from '../Types/IClient';
 import Job from '../Types/IJob';
 
@@ -34,6 +35,12 @@ const createClient = (client: Client): Promise<Client> => {
   return axios.post(API_URL + '/clients', client).then(({ data }) => data.data);
 };
 
+const patchClient = (client: Client): Promise<APIResult<Client>> => {
+  return axios
+    .patch(API_URL + '/clients/' + client._id, client)
+    .then(({ data }) => data);
+};
+
 export default {
   getJobs,
   getJob,
@@ -43,4 +50,5 @@ export default {
   getClients,
   getClient,
   createClient,
+  patchClient,
 };

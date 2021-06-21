@@ -2,8 +2,9 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import Api from '../../Api';
+import Address from '../../Types/IAddress';
 import APIResult from '../../Types/IAPIResult';
 import Client from '../../Types/IClient';
 
@@ -16,11 +17,34 @@ const ClientBook: React.FC<Record<string, never>> = () => {
         <Col xs={5} className="vh-100">
           <ClientList setSelectedClient={setSelectedClient} />
         </Col>
-        <Col xs={7} className="vh-100">
-          <ClientDetails
-            selectedClient={selectedClient}
-            setSelectedClient={setSelectedClient}
-          />
+        <Col xs={7} className="vh-100 d-flex flex-column">
+          <div className="flex-grow-1">
+            <ClientDetails
+              selectedClient={selectedClient}
+              setSelectedClient={setSelectedClient}
+            />
+          </div>
+
+          <div className="mb-3 d-flex justify-content-end">
+            <Button variant="primary" className="mr-1">
+              Find Jobs By Client
+            </Button>
+            <Button
+              variant="success"
+              className="mr-1"
+              onClick={async () => {
+                const result = await Api.patchClient(selectedClient);
+                if (result.success) {
+                  alert('Your changes have been saved!');
+                }
+              }}
+            >
+              Save Changes
+            </Button>
+            <Button variant="danger" onClick={() => window.close()}>
+              Close
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>
@@ -58,7 +82,7 @@ const ClientList: React.FC<{
 
   const getSelection = () => {
     const { data } = gridApi.getSelectedNodes()[0];
-
+    console.log(data);
     setSelectedClient(data);
   };
 
@@ -115,7 +139,7 @@ const ClientDetails: React.FC<{
   selectedClient: Client;
   setSelectedClient: React.Dispatch<React.SetStateAction<Client>>;
 }> = ({ selectedClient, setSelectedClient }) => {
-  const [address, setAddress] = useState(selectedClient.address);
+  const [address, setAddress] = useState<Address>();
 
   useEffect(() => {
     setSelectedClient({
@@ -123,6 +147,10 @@ const ClientDetails: React.FC<{
       address: { ...selectedClient.address, ...address },
     });
   }, [address]);
+
+  useEffect(() => {
+    setAddress(selectedClient.address);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -206,7 +234,7 @@ const ClientDetails: React.FC<{
           type="text"
           size="sm"
           placeholder="Phone"
-          value={selectedClient.phone}
+          value={selectedClient.phone || ''}
           name="phone"
           onChange={handleChange}
         />
@@ -216,7 +244,7 @@ const ClientDetails: React.FC<{
           type="text"
           size="sm"
           placeholder="Mobile"
-          value={selectedClient.mobile}
+          value={selectedClient.mobile || ''}
           name="mobile"
           onChange={handleChange}
         />
@@ -226,7 +254,7 @@ const ClientDetails: React.FC<{
           type="text"
           size="sm"
           placeholder="Email"
-          value={selectedClient.email}
+          value={selectedClient.email || ''}
           name="email"
           onChange={handleChange}
         />
@@ -240,6 +268,7 @@ const ClientDetails: React.FC<{
           value={selectedClient.notes || ''}
           name="notes"
           onChange={handleChange}
+          style={{ height: '100%' }}
         />
       </Form.Group>
     </Form>
