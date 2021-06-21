@@ -16,7 +16,7 @@ const ClientBook: React.FC<Record<string, never>> = () => {
         <Col xs={5} className="vh-100">
           <ClientList setSelectedClient={setSelectedClient} />
         </Col>
-        <Col xs={7} className="h-100">
+        <Col xs={7} className="vh-100">
           <ClientDetails
             selectedClient={selectedClient}
             setSelectedClient={setSelectedClient}
@@ -63,6 +63,7 @@ const ClientList: React.FC<{
   };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const { value } = e.target;
     setFilter(value);
     setRowData(
