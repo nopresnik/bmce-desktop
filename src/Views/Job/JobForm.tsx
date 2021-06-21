@@ -348,6 +348,8 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
 
   const testStatus = (status: JobStatus) => job.status == status;
 
+  if (!job.status) setJob({ ...job, status: JobStatus.Active });
+
   return (
     <>
       <Form.Group>
