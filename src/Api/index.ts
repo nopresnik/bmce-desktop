@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import APIResult from '../Types/IAPIResult';
 import Client from '../Types/IClient';
 import Job from '../Types/IJob';
+import User from '../Types/IUser';
 
 const API_URL = 'http://localhost:3001/api';
 
@@ -41,6 +42,10 @@ const patchClient = (client: Client): Promise<APIResult<Client>> => {
     .then(({ data }) => data);
 };
 
+const getUsers = (): Promise<User[]> => {
+  return axios.get(API_URL + '/users').then(({ data }) => data.data);
+};
+
 export default {
   getJobs,
   getJob,
@@ -51,4 +56,5 @@ export default {
   getClient,
   createClient,
   patchClient,
+  getUsers,
 };

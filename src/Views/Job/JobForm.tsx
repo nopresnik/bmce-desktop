@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, Table } from 'react-bootstrap';
+import Api from '../../Api';
 import Address from '../../Types/IAddress';
 import Job from '../../Types/IJob';
 import JobStatus from '../../Types/IJobStatus';
@@ -350,6 +351,14 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
 
   if (!job.status) setJob({ ...job, status: JobStatus.Active });
 
+  const [staffList, setStaffList] = useState<string[]>([]);
+
+  useEffect(() => {
+    Api.getUsers().then((data) =>
+      setStaffList(data.map((staff) => staff.initials))
+    );
+  }, []);
+
   return (
     <>
       <Form.Group>
@@ -402,12 +411,18 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
             <Form.Label className="mr-2">By</Form.Label>
             <Form.Control
               type="select"
+              list="staff-list"
               size="sm"
               value={job.completedBy}
               name="completedBy"
               onChange={(e) => handleChange(e, job, setJob)}
               disabled={job.status !== JobStatus.Completed}
             />
+            <datalist id="staff-list">
+              {staffList.map((initials) => (
+                <option key={initials} value={initials} />
+              ))}
+            </datalist>
           </Form.Group>
         </Form.Row>
       </Form.Group>

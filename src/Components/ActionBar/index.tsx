@@ -7,7 +7,18 @@ const ActionBar: React.FC<Record<string, never>> = () => {
   return (
     <div className="action-bar mt-3">
       <QuickView />
-      <Button variant="secondary">Advanced Search</Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          window.open(
+            `#/search/`,
+            '_blank',
+            `title=Advanced Search,width=1280,height=720`
+          );
+        }}
+      >
+        Advanced Search
+      </Button>
       <div className="divider"></div>
       <Button
         variant="secondary"
