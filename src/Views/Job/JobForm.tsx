@@ -172,6 +172,14 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
     price: 0,
   });
 
+  const [priceCategories, setPriceCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    Api.getPriceCats().then((data) =>
+      setPriceCategories(data.map((priceCat) => priceCat.description))
+    );
+  }, []);
+
   const renderPricingList = () =>
     job.pricing &&
     job.pricing.map((element, index) => (
@@ -228,7 +236,13 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
                 onChange={(e) =>
                   setNewPrice({ ...newPrice, description: e.target.value })
                 }
+                list="pricing-list"
               />
+              <datalist id="pricing-list">
+                {priceCategories.map((category) => (
+                  <option key={category} value={category} />
+                ))}
+              </datalist>
             </td>
             <td width="90">
               <Form.Control

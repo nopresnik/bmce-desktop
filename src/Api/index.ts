@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import APIResult from '../Types/IAPIResult';
 import Client from '../Types/IClient';
 import Job from '../Types/IJob';
+import PriceCategory from '../Types/IPriceCategory';
 import User from '../Types/IUser';
 
 const API_URL = 'http://localhost:3001/api';
@@ -46,6 +47,10 @@ const getUsers = (): Promise<User[]> => {
   return axios.get(API_URL + '/users').then(({ data }) => data.data);
 };
 
+const getPriceCats = (): Promise<PriceCategory[]> => {
+  return axios.get(API_URL + '/pricecategories').then(({ data }) => data.data);
+};
+
 export default {
   getJobs,
   getJob,
@@ -57,4 +62,5 @@ export default {
   createClient,
   patchClient,
   getUsers,
+  getPriceCats,
 };

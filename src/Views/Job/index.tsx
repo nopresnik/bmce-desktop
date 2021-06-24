@@ -72,12 +72,13 @@ const Job: React.FC<Record<string, never>> = () => {
         <Col className="d-flex justify-content-end">
           <Button
             variant="secondary"
+            size="sm"
             className="mr-2"
             onClick={() => window.close()}
           >
             Cancel
           </Button>
-          <Button variant="success" onClick={handleSaveJob}>
+          <Button variant="success" size="sm" onClick={handleSaveJob}>
             Save Changes
           </Button>
         </Col>

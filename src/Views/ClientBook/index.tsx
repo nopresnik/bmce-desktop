@@ -26,11 +26,12 @@ const ClientBook: React.FC<Record<string, never>> = () => {
           </div>
 
           <div className="mb-3 d-flex justify-content-end">
-            <Button variant="primary" className="mr-1">
+            <Button variant="primary" size="sm" className="mr-1">
               Find Jobs By Client
             </Button>
             <Button
               variant="success"
+              size="sm"
               className="mr-1"
               onClick={async () => {
                 const result = await Api.patchClient(selectedClient);
@@ -41,7 +42,7 @@ const ClientBook: React.FC<Record<string, never>> = () => {
             >
               Save Changes
             </Button>
-            <Button variant="danger" onClick={() => window.close()}>
+            <Button variant="danger" size="sm" onClick={() => window.close()}>
               Close
             </Button>
           </div>
