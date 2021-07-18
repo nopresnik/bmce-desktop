@@ -12,8 +12,11 @@ const ActionBar: React.FC<Record<string, never>> = () => {
         onClick={() => {
           window.open(
             `#/search/`,
-            '_blank',
-            `title=Advanced Search,width=1280,height=720`
+            JSON.stringify({
+              title: `Advanced Search`,
+              width: 1280,
+              height: 720,
+            })
           );
         }}
       >
@@ -25,8 +28,11 @@ const ActionBar: React.FC<Record<string, never>> = () => {
         onClick={() => {
           window.open(
             `#/job/`,
-            '_blank',
-            `title=Create job,width=1080,height=720`
+            JSON.stringify({
+              title: `Create Job`,
+              width: 1080,
+              height: 720,
+            })
           );
         }}
       >
@@ -39,8 +45,11 @@ const ActionBar: React.FC<Record<string, never>> = () => {
         onClick={() => {
           window.open(
             `#/clients/`,
-            '_blank',
-            `title=Client Book,width=720,height=720`
+            JSON.stringify({
+              title: `Client Book`,
+              width: 720,
+              height: 720,
+            })
           );
         }}
       >

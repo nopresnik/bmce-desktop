@@ -23,8 +23,16 @@ const createWindow = (): void => {
 
   mainWindow.setTitle('BM Civil Engineers :: Centralised Job Tracking');
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.on('new-window', function (event, url, optString) {
+    event.preventDefault();
+    const options = JSON.parse(optString);
+    const childWindow = new BrowserWindow({
+      height: options.height,
+      width: options.width,
+      title: options.title,
+    });
+    childWindow.loadURL(url);
+  });
 };
 
 // This method will be called when Electron has finished
