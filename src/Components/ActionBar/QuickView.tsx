@@ -12,9 +12,11 @@ const QuickView: React.FC<Record<string, never>> = () => {
   return (
     <InputGroup>
       <FormControl
-        type="number"
+        type="text"
         value={id}
         placeholder="Job #"
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick={(e: any) => (e.target.value = '')}
         onChange={(e) => setId(parseInt(e.target.value))}
         onKeyUp={(e: React.KeyboardEvent) => {
           if (e.key === 'Enter') {
