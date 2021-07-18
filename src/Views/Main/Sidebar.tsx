@@ -61,11 +61,12 @@ const Sidebar: React.FC<Record<string, never>> = () => {
         <Card.Header>Job counts</Card.Header>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            Month (June)
+            Month ({new Date().toLocaleDateString('default', { month: 'long' })}
+            )
             <StatPill variant="success" content={(stats && stats.month) || 0} />
           </ListGroup.Item>
           <ListGroup.Item>
-            Year (2021)
+            Year ({new Date().getFullYear()})
             <StatPill
               variant="secondary"
               content={(stats && stats.year) || 0}
