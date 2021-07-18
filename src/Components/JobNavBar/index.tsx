@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import Api from '../../Api';
-import StatPill from '../StatPill';
 
 interface Stats {
   active: number;
@@ -24,34 +23,34 @@ const JobNavBar: React.FC<Record<string, never>> = () => {
       <Nav.Item>
         <Nav.Link href="#/">
           Active
-          <StatPill
+          {/* <StatPill
             variant="secondary"
             content={(stats && stats.active) || 0}
-          />
+          /> */}
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="#/hold">
           On Hold
-          <StatPill variant="secondary" content={(stats && stats.hold) || 0} />
+          {/* <StatPill variant="secondary" content={(stats && stats.hold) || 0} /> */}
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="#/awaitinginvoicing">
           Awaiting Invoicing
-          <StatPill
+          {/* <StatPill
             variant="secondary"
             content={(stats && stats.awaitingInvoicing) || 0}
-          />
+          /> */}
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="#/unpaid">
           Unpaid
-          <StatPill
+          {/* <StatPill
             variant="secondary"
             content={(stats && stats.unpaid) || 0}
-          />
+          /> */}
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
