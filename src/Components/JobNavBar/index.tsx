@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
-import Api from '../../Api';
 
 interface Stats {
   active: number;
@@ -12,11 +11,11 @@ interface Stats {
 }
 
 const JobNavBar: React.FC<Record<string, never>> = () => {
-  const [stats, setStats] = useState<Stats>();
+  // const [stats, setStats] = useState<Stats>();
 
-  useEffect(() => {
-    Api.getStats().then(({ data }) => setStats(data.data));
-  }, []);
+  // useEffect(() => {
+  //   Api.getStats().then(({ data }) => setStats(data.data));
+  // }, []);
 
   return (
     <Nav variant="tabs" defaultActiveKey="#/" className="mt-1 job-nav-bar">
