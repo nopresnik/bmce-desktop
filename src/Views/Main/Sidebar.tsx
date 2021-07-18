@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 import Api from '../../Api';
 import StatPill from '../../Components/StatPill';
+import Pusher from '../../Helpers/Pusher';
 import logo from '../../Images/bmlogo.png';
 
 interface Stats {
@@ -16,8 +17,21 @@ interface Stats {
 const Sidebar: React.FC<Record<string, never>> = () => {
   const [stats, setStats] = useState<Stats>();
 
-  useEffect(() => {
+  const fetchData = () => {
     Api.getStats().then(({ data }) => setStats(data.data));
+  };
+
+  useEffect(() => {
+    fetchData();
+    Pusher.getInstance()
+      .getJobsChannel()
+      .bind('update_job', () => {
+        fetchData();
+      });
+
+    return () => {
+      Pusher.getInstance().getJobsChannel().unbind_all();
+    };
   }, []);
 
   return (
