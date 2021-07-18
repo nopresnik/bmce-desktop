@@ -26,9 +26,9 @@ const ClientBook: React.FC<Record<string, never>> = () => {
           </div>
 
           <div className="mb-3 d-flex justify-content-end">
-            <Button variant="primary" size="sm" className="mr-1">
+            {/* <Button variant="primary" size="sm" className="mr-1">
               Find Jobs By Client
-            </Button>
+            </Button> */}
             <Button
               variant="success"
               size="sm"
