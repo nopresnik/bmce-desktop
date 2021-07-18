@@ -13,13 +13,19 @@ const Job: React.FC<Record<string, never>> = () => {
   const [job, setJob] = useState({} as Job);
   const [client, setClient] = useState({} as Client);
 
-  useEffect(() => {
+  const isDeleted = job.deleted;
+
+  const init = () => {
     if (jobID) {
       Api.getJob(parseInt(jobID)).then(({ data }) => {
         setJob(data.data);
         setClient(data.data.client);
       });
     }
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   const handleSaveJob = async () => {
@@ -49,6 +55,20 @@ const Job: React.FC<Record<string, never>> = () => {
     }
   };
 
+  const handleDeleteJob = async () => {
+    if (isDeleted) {
+      // Recover the job
+      Api.recoverJob(job.jobID).then(() => {
+        setJob({ ...job, deleted: false });
+      });
+    } else {
+      // Delete the job
+      Api.deleteJob(job.jobID).then(() => {
+        setJob({ ...job, deleted: true });
+      });
+    }
+  };
+
   return job ? (
     <Container fluid>
       <Row noGutters>
@@ -70,6 +90,17 @@ const Job: React.FC<Record<string, never>> = () => {
       </Row>
       <Row>
         <Col className="d-flex justify-content-end">
+          {jobID && (
+            <Button
+              variant={isDeleted ? 'warning' : 'danger'}
+              size="sm"
+              className="mr-2"
+              onClick={handleDeleteJob}
+            >
+              {isDeleted ? 'Recover Job' : 'Delete Job'}
+            </Button>
+          )}
+
           <Button
             variant="secondary"
             size="sm"
