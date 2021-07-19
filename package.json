@@ -1,9 +1,12 @@
 {
   "name": "bmce-desktop",
-  "productName": "bmce-desktop",
+  "productName": "BMCJT",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
+  "win": {
+    "icon": "./src/Images/icon.png"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
