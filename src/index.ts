@@ -15,13 +15,12 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 720,
     width: 1280,
+    title: 'BM Civil Engineers :: Centralised Job Tracking',
+    autoHideMenuBar: true,
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-  // mainWindow.loadURL('https://google.com/');
-
-  mainWindow.setTitle('BM Civil Engineers :: Centralised Job Tracking');
 
   mainWindow.webContents.on('new-window', function (event, url, optString) {
     event.preventDefault();
@@ -30,6 +29,7 @@ const createWindow = (): void => {
       height: options.height,
       width: options.width,
       title: options.title,
+      autoHideMenuBar: true,
     });
     childWindow.loadURL(url);
   });
