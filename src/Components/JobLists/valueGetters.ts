@@ -3,7 +3,7 @@ import Job from '../../Types/IJob';
 
 const dateParser = (job: APIResult<Job>): string => {
   const { date } = job.data;
-  return new Date(date).toLocaleDateString();
+  return new Date(date).toLocaleDateString('en-AU');
 };
 
 const addressParser = (job: APIResult<Job>): string => {
