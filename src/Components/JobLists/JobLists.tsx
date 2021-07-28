@@ -118,6 +118,16 @@ const Invoicing: React.FC<Record<string, never>> = () => {
       />
       <AgGridColumn field="description" sortable={true} filter={true} />
       <AgGridColumn
+        field="dateCompleted"
+        headerName="Completed"
+        sortable={true}
+        filter={true}
+        maxWidth={125}
+        minWidth={125}
+        suppressAutoSize={true}
+        valueGetter={valueGetters.dateParser}
+      />
+      <AgGridColumn
         field="totalPrice"
         headerName="Price"
         sortable={true}
