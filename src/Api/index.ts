@@ -21,11 +21,11 @@ const patchJob = (job: Job): Promise<AxiosResponse> =>
 const postJob = (job: Job): Promise<AxiosResponse> =>
   axios.post(API_URL + '/jobs', job);
 
-const deleteJob = (jobID: number): Promise<Job> => {
+const deleteJob = (jobID: number | string): Promise<Job> => {
   return axios.delete(API_URL + '/jobs/' + jobID).then(({ data }) => data.data);
 };
 
-const recoverJob = (jobID: number): Promise<Job> => {
+const recoverJob = (jobID: number | string): Promise<Job> => {
   return axios
     .post(API_URL + '/jobs/recover/' + jobID)
     .then(({ data }) => data.data);
