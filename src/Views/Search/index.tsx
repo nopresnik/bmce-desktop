@@ -7,7 +7,7 @@ import { default as valueGetters } from '../../Components/JobLists/valueGetters'
 
 const Search: React.FC<Record<string, never>> = () => {
   const [gridApi, setGridApi] = useState(null);
-  const [, setGridColumnApi] = useState(null);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
   const [rowData, setRowData] = useState(null);
 
   const fetchJobs = () => {
@@ -25,8 +25,20 @@ const Search: React.FC<Record<string, never>> = () => {
 
   const firstDataRendered = () => {
     gridApi.sizeColumnsToFit();
-
+    sortByID();
     window.onresize = () => gridApi.sizeColumnsToFit();
+  };
+
+  const sortByID = () => {
+    gridColumnApi.applyColumnState({
+      state: [
+        {
+          colId: 'jobID',
+          sort: 'desc',
+        },
+      ],
+      defaultState: { sort: null },
+    });
   };
 
   return (
@@ -48,21 +60,23 @@ const Search: React.FC<Record<string, never>> = () => {
             maxWidth={125}
             minWidth={125}
             suppressAutoSize={true}
-            valueGetter={valueGetters.dateParser}
+            valueFormatter={valueGetters.dateParser}
             floatingFilter={true}
             suppressMenu={true}
           />
           <AgGridColumn
+            colId="jobID"
             field="jobID"
             sortable={true}
-            filter="agNumberColumnFilter"
+            // filter="agNumberColumnFilter"
+            filter={true}
             maxWidth={110}
             minWidth={110}
             suppressAutoSize={true}
             headerName="Job #"
             floatingFilter={true}
             suppressMenu={true}
-            valueGetter={valueGetters.jobNumberParser}
+            valueFormatter={valueGetters.jobNumberParser}
           />
           <AgGridColumn
             field="client.name"
