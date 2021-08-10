@@ -31,6 +31,7 @@ const Job: React.FC<Record<string, never>> = () => {
         job = { ...job, previousRefs: [parseInt(jobRef)] };
         delete job._id;
         delete job.jobID;
+        delete job.description;
         delete job.pricing;
         delete job.invoiced;
         delete job.invoicePaid;
