@@ -6,9 +6,15 @@ const parseJobNumber = (jobID: string | number): string => {
   return '';
 };
 
-const openJob = (jobID: number): void => {
+const openJob = (jobID: number | string): void => {
+  let id: number | string = jobID;
+
+  if (typeof jobID === 'string') {
+    id = parseFloat(jobID.replace('-', '.'));
+  }
+
   window.open(
-    `#/job/${jobID}`,
+    `#/job/${id}`,
     JSON.stringify({
       title: `View Job ${parseJobNumber(jobID)}`,
       width: 1080,
