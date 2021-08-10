@@ -1,5 +1,9 @@
 const parseJobNumber = (jobID: string | number): string => {
-  return jobID.toString().replace('.', '-');
+  if (jobID) {
+    return jobID.toString().replace('.', '-');
+  }
+
+  return '';
 };
 
 const openJob = (jobID: number): void => {
