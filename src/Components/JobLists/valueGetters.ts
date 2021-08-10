@@ -1,3 +1,4 @@
+import helpers from '../../Helpers';
 import APIResult from '../../Types/IAPIResult';
 import Job from '../../Types/IJob';
 
@@ -25,4 +26,16 @@ const priceParser = (job: APIResult<Job>): string => {
   return '$' + totalPrice.toLocaleString();
 };
 
-export default { dateParser, addressParser, statusParser, priceParser };
+const jobNumberParser = (job: APIResult<Job>): string => {
+  const { jobID } = job.data;
+
+  return helpers.parseJobNumber(jobID);
+};
+
+export default {
+  dateParser,
+  addressParser,
+  statusParser,
+  priceParser,
+  jobNumberParser,
+};

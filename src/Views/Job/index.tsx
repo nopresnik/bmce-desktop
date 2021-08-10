@@ -6,6 +6,7 @@ import Client from '../../Types/IClient';
 import Job from '../../Types/IJob';
 import ClientForm from './ClientForm';
 import JobForm from './JobForm';
+import PrevRefForm from './PrevRefForm';
 
 const Job: React.FC<Record<string, never>> = () => {
   const { jobID } = useParams<{ jobID: string }>();
@@ -15,13 +16,41 @@ const Job: React.FC<Record<string, never>> = () => {
 
   const isDeleted = job.deleted;
 
-  const init = () => {
+  const init = (jobRef?: string) => {
     if (jobID) {
-      Api.getJob(parseInt(jobID)).then(({ data }) => {
+      return Api.getJob(jobID).then(({ data }) => {
         setJob(data.data);
         setClient(data.data.client);
       });
     }
+
+    if (jobRef && !jobID) {
+      return Api.getJob(jobRef).then(({ data }) => {
+        let job = data.data;
+        // Add the previous reference to the job
+        job = { ...job, previousRefs: [parseInt(jobRef)] };
+        delete job._id;
+        delete job.jobID;
+        delete job.date;
+        delete job.description;
+        delete job.pricing;
+        delete job.invoiced;
+        delete job.invoicePaid;
+        delete job.dateCompleted;
+        delete job.status;
+        delete job.completedBy;
+
+        setJob(job);
+        setClient(job.client);
+      });
+    }
+
+    setJob({} as Job);
+    setClient({} as Client);
+  };
+
+  const setPrevRef = (jobRef: string) => {
+    init(jobRef);
   };
 
   useEffect(() => {
@@ -29,6 +58,7 @@ const Job: React.FC<Record<string, never>> = () => {
   }, []);
 
   const handleSaveJob = async () => {
+    console.log(job);
     if (jobID) {
       const result = await Api.patchJob(job);
 
@@ -83,6 +113,13 @@ const Job: React.FC<Record<string, never>> = () => {
           </div>
         </Col>
         <Col sm={8}>
+          {!jobID && (
+            <Row>
+              <Col sm={6}>
+                <PrevRefForm setPrevRef={setPrevRef} />
+              </Col>
+            </Row>
+          )}
           <div className="border my-3 p-2">
             <JobForm job={job} setJob={setJob} />
           </div>
@@ -90,7 +127,7 @@ const Job: React.FC<Record<string, never>> = () => {
       </Row>
       <Row>
         <Col className="d-flex justify-content-end">
-          {jobID && (
+          {jobID ? (
             <Button
               variant={isDeleted ? 'warning' : 'danger'}
               size="sm"
@@ -98,6 +135,15 @@ const Job: React.FC<Record<string, never>> = () => {
               onClick={handleDeleteJob}
             >
               {isDeleted ? 'Recover Job' : 'Delete Job'}
+            </Button>
+          ) : (
+            <Button
+              variant="danger"
+              size="sm"
+              className="mr-2"
+              onClick={() => init()}
+            >
+              Clear Form
             </Button>
           )}
 

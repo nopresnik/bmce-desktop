@@ -92,8 +92,7 @@ const ClientForm: React.FC<PropTypes> = (props) => {
               ))}
             </datalist>
             <Form.Control.Feedback type="invalid">
-              No existing client has been selected. This will create a new
-              client.
+              No existing client has been selected.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>

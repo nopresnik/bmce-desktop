@@ -12,7 +12,7 @@ const getJobs = (status?: string): Promise<AxiosResponse> => {
   return axios.get(API_URL + '/jobs');
 };
 
-const getJob = (jobID: number): Promise<AxiosResponse> =>
+const getJob = (jobID: number | string): Promise<AxiosResponse> =>
   axios.get(API_URL + '/jobs/' + jobID);
 
 const patchJob = (job: Job): Promise<AxiosResponse> =>
@@ -21,11 +21,11 @@ const patchJob = (job: Job): Promise<AxiosResponse> =>
 const postJob = (job: Job): Promise<AxiosResponse> =>
   axios.post(API_URL + '/jobs', job);
 
-const deleteJob = (jobID: number): Promise<Job> => {
+const deleteJob = (jobID: number | string): Promise<Job> => {
   return axios.delete(API_URL + '/jobs/' + jobID).then(({ data }) => data.data);
 };
 
-const recoverJob = (jobID: number): Promise<Job> => {
+const recoverJob = (jobID: number | string): Promise<Job> => {
   return axios
     .post(API_URL + '/jobs/recover/' + jobID)
     .then(({ data }) => data.data);

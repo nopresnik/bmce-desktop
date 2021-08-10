@@ -38,7 +38,7 @@ const JobForm: React.FC<PropTypes> = (props) => {
           </Col>
           <Col>
             <JobPricingForm job={job} setJob={setJob} />
-            <JobPrevRefForm job={job} setJob={setJob} />
+            {/* <JobPrevRefForm job={job} setJob={setJob} /> */}
             <JobStatusForm job={job} setJob={setJob} />
             <JobInvoiceForm job={job} setJob={setJob} />
           </Col>
@@ -128,6 +128,7 @@ const JobNotesForm: React.FC<PropTypes> = (props) => {
         <Form.Control
           as="textarea"
           type="text"
+          rows={3}
           placeholder="Notes"
           size="sm"
           value={job.description || ''}
@@ -140,6 +141,7 @@ const JobNotesForm: React.FC<PropTypes> = (props) => {
         <Form.Control
           as="textarea"
           type="text"
+          rows={3}
           placeholder="Additional notes"
           size="sm"
           value={job.notes || ''}

@@ -4,7 +4,7 @@ import JobStatus from './IJobStatus';
 import Price from './IPrice';
 
 export default interface Job {
-  jobID: number;
+  jobID: string;
   date: Date;
   client: any;
   location: Address;
