@@ -31,6 +31,7 @@ const Job: React.FC<Record<string, never>> = () => {
         job = { ...job, previousRefs: [parseInt(jobRef)] };
         delete job._id;
         delete job.jobID;
+        delete job.date;
         delete job.description;
         delete job.pricing;
         delete job.invoiced;
@@ -57,6 +58,7 @@ const Job: React.FC<Record<string, never>> = () => {
   }, []);
 
   const handleSaveJob = async () => {
+    console.log(job);
     if (jobID) {
       const result = await Api.patchJob(job);
 
