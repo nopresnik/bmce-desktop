@@ -31,7 +31,7 @@ const ActionBar: React.FC<Record<string, never>> = () => {
             JSON.stringify({
               title: `Create Job`,
               width: 1080,
-              height: 720,
+              height: 800,
             })
           );
         }}
