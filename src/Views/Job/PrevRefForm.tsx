@@ -34,6 +34,3 @@ const PrevRefForm: React.FC<PropTypes> = ({ setPrevRef }) => {
 };
 
 export default PrevRefForm;
-function jobRef(jobRef: any) {
-  throw new Error('Function not implemented.');
-}
