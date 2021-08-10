@@ -23,6 +23,7 @@ const Active: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
+        valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"
@@ -62,6 +63,7 @@ const Hold: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
+        valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"
@@ -102,6 +104,7 @@ const Invoicing: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
+        valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"
@@ -162,6 +165,7 @@ const Unpaid: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
+        // valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"
@@ -212,6 +216,7 @@ const Completed: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
+        valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"

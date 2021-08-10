@@ -62,6 +62,7 @@ const Search: React.FC<Record<string, never>> = () => {
             headerName="Job #"
             floatingFilter={true}
             suppressMenu={true}
+            valueGetter={valueGetters.jobNumberParser}
           />
           <AgGridColumn
             field="client.name"

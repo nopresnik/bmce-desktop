@@ -1,3 +1,7 @@
+const parseJobNumber = (jobID: string | number): string => {
+  return jobID.toString().replace('.', '-');
+};
+
 const openJob = (jobID: number): void => {
   window.open(
     `#/job/${jobID}`,
@@ -9,4 +13,4 @@ const openJob = (jobID: number): void => {
   );
 };
 
-export default { openJob };
+export default { openJob, parseJobNumber };

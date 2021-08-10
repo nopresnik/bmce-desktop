@@ -12,7 +12,7 @@ const getJobs = (status?: string): Promise<AxiosResponse> => {
   return axios.get(API_URL + '/jobs');
 };
 
-const getJob = (jobID: number): Promise<AxiosResponse> =>
+const getJob = (jobID: number | string): Promise<AxiosResponse> =>
   axios.get(API_URL + '/jobs/' + jobID);
 
 const patchJob = (job: Job): Promise<AxiosResponse> =>
