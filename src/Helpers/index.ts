@@ -10,7 +10,7 @@ const openJob = (jobID: number): void => {
   window.open(
     `#/job/${jobID}`,
     JSON.stringify({
-      title: `View Job ${jobID}`,
+      title: `View Job ${parseJobNumber(jobID)}`,
       width: 1080,
       height: 720,
     })
