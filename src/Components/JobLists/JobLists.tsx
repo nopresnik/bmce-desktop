@@ -128,7 +128,7 @@ const Invoicing: React.FC<Record<string, never>> = () => {
         maxWidth={125}
         minWidth={125}
         suppressAutoSize={true}
-        valueGetter={valueGetters.dateParser}
+        valueGetter={valueGetters.completedDateParser}
       />
       <AgGridColumn
         field="totalPrice"
@@ -240,7 +240,7 @@ const Completed: React.FC<Record<string, never>> = () => {
         maxWidth={125}
         minWidth={125}
         suppressAutoSize={true}
-        valueGetter={valueGetters.dateParser}
+        valueGetter={valueGetters.completedDateParser}
       />
       <AgGridColumn
         field="completedBy"

@@ -7,6 +7,11 @@ const dateParser = (job: APIResult<Job>): string => {
   return new Date(date).toLocaleDateString('en-AU');
 };
 
+const completedDateParser = (job: APIResult<Job>): string => {
+  const { dateCompleted } = job.data;
+  return new Date(dateCompleted).toLocaleDateString('en-AU');
+};
+
 const addressParser = (job: APIResult<Job>): string => {
   const { line1, line2, city, state, postcode } = job.data.location;
   return `${line1 || ''} ${line2 || ''} ${city || ''} ${state || ''} ${
@@ -34,6 +39,7 @@ const jobNumberParser = (job: APIResult<Job>): string => {
 
 export default {
   dateParser,
+  completedDateParser,
   addressParser,
   statusParser,
   priceParser,
