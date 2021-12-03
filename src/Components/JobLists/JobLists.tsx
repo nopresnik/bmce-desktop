@@ -165,7 +165,7 @@ const Unpaid: React.FC<Record<string, never>> = () => {
         minWidth={110}
         suppressAutoSize={true}
         headerName="Job #"
-        // valueGetter={valueGetters.jobNumberParser}
+        valueGetter={valueGetters.jobNumberParser}
       />
       <AgGridColumn
         field="client.name"
