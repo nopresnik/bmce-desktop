@@ -3,12 +3,12 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import Api from '../../Api';
-import Address from '../../Types/IAddress';
-import APIResult from '../../Types/IAPIResult';
-import Client from '../../Types/IClient';
+import { patchClient, getClients } from '../../api';
+import Address from '../../types/IAddress';
+import APIResult from '../../types/IAPIResult';
+import Client from '../../types/IClient';
 
-const ClientBook: React.FC<Record<string, never>> = () => {
+const ClientBook: React.FC = () => {
   const [selectedClient, setSelectedClient] = useState<Client>({} as Client);
 
   return (
@@ -30,11 +30,10 @@ const ClientBook: React.FC<Record<string, never>> = () => {
               Find Jobs By Client
             </Button> */}
             <Button
-              variant="success"
               size="sm"
               className="mr-1"
               onClick={async () => {
-                const result = await Api.patchClient(selectedClient);
+                const result = await patchClient(selectedClient);
                 if (result.success) {
                   alert('Your changes have been saved!');
                 }
@@ -62,7 +61,7 @@ const ClientList: React.FC<{
   const [filter, setFilter] = useState(null);
 
   const fetchClients = () => {
-    Api.getClients().then((data) => {
+    getClients().then((data) => {
       setClients(data);
       setRowData(data);
     });

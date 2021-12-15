@@ -3,12 +3,11 @@ import { Button } from 'react-bootstrap';
 import QuickView from './QuickView';
 import './styles.scss';
 
-const ActionBar: React.FC<Record<string, never>> = () => {
+const ActionBar: React.FC = () => {
   return (
     <div className="action-bar mt-3">
       <QuickView />
       <Button
-        variant="secondary"
         onClick={() => {
           window.open(
             `#/search/`,
@@ -24,7 +23,6 @@ const ActionBar: React.FC<Record<string, never>> = () => {
       </Button>
       <div className="divider"></div>
       <Button
-        variant="secondary"
         onClick={() => {
           window.open(
             `#/job/`,
@@ -38,9 +36,8 @@ const ActionBar: React.FC<Record<string, never>> = () => {
       >
         Create Job
       </Button>
-      <Button variant="secondary">Refresh</Button>
+      <Button>Refresh</Button>
       <Button
-        variant="secondary"
         className="mr-0"
         onClick={() => {
           window.open(

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
-import Api from '../../Api';
-import StatPill from '../../Components/StatPill';
-import Pusher from '../../Helpers/Pusher';
+import { getStats } from '../../api';
+import StatPill from '../../components/StatPill';
+import Pusher from '../../helpers/Pusher';
 import logo from '../../Images/bmlogo.png';
 
 interface Stats {
@@ -14,11 +14,11 @@ interface Stats {
   year: number;
 }
 
-const Sidebar: React.FC<Record<string, never>> = () => {
+const Sidebar: React.FC = () => {
   const [stats, setStats] = useState<Stats>();
 
   const fetchData = () => {
-    Api.getStats().then(({ data }) => setStats(data.data));
+    getStats().then(({ data }) => setStats(data.data));
   };
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React from 'react';
 import JobList from './JobList';
 import { default as valueGetters } from './valueGetters';
 
-const Active: React.FC<Record<string, never>> = () => {
+const Active: React.FC = () => {
   return (
     <JobList getJobs="active">
       <AgGridColumn
@@ -43,7 +43,7 @@ const Active: React.FC<Record<string, never>> = () => {
   );
 };
 
-const Hold: React.FC<Record<string, never>> = () => {
+const Hold: React.FC = () => {
   return (
     <JobList getJobs="hold">
       <AgGridColumn
@@ -84,7 +84,7 @@ const Hold: React.FC<Record<string, never>> = () => {
   );
 };
 
-const Invoicing: React.FC<Record<string, never>> = () => {
+const Invoicing: React.FC = () => {
   return (
     <JobList getJobs="invoicing">
       <AgGridColumn
@@ -145,7 +145,7 @@ const Invoicing: React.FC<Record<string, never>> = () => {
   );
 };
 
-const Unpaid: React.FC<Record<string, never>> = () => {
+const Unpaid: React.FC = () => {
   return (
     <JobList getJobs="unpaid">
       <AgGridColumn
@@ -196,7 +196,7 @@ const Unpaid: React.FC<Record<string, never>> = () => {
   );
 };
 
-const Completed: React.FC<Record<string, never>> = () => {
+const Completed: React.FC = () => {
   return (
     <JobList getJobs="completed">
       <AgGridColumn

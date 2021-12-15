@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { Col, Form, InputGroup } from 'react-bootstrap';
-import Api from '../../Api';
-import Address from '../../Types/IAddress';
-import Client from '../../Types/IClient';
-import Job from '../../Types/IJob';
+import { getClient, getClients } from '../../api';
+import Address from '../../types/IAddress';
+import Client from '../../types/IClient';
+import Job from '../../types/IJob';
 
 interface PropTypes {
   job: Job;
@@ -31,13 +31,13 @@ const ClientForm: React.FC<PropTypes> = (props) => {
 
   useEffect(() => {
     // Populate the clients list
-    Api.getClients().then((data) => setDbClients(data));
+    getClients().then((data) => setDbClients(data));
   }, []);
 
   useEffect(() => {
     if (job.jobID) {
       console.log('Fetching client details');
-      Api.getClient(job.client._id).then((data) => setClient(data));
+      getClient(job.client._id).then((data) => setClient(data));
     }
   }, [job]);
 

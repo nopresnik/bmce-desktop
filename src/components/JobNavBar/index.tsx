@@ -10,7 +10,7 @@ interface Stats {
   year: number;
 }
 
-const JobNavBar: React.FC<Record<string, never>> = () => {
+const JobNavBar: React.FC = () => {
   // const [stats, setStats] = useState<Stats>();
 
   // useEffect(() => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import ClientBook from './Views/ClientBook';
-import Job from './Views/Job';
-import Main from './Views/Main';
-import Search from './Views/Search';
+import ClientBook from './views/clientbook';
+import Job from './views/job';
+import Main from './views/main';
+import Search from './views/search';
 
-const App: React.FC<Record<string, never>> = () => {
+const App: React.FC = () => {
   return (
     <Router>
       <Switch>

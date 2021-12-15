@@ -1,12 +1,13 @@
 // TODO: Add type safety.  Remove use of any in future
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { StaffPicker } from '../../components';
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, Table } from 'react-bootstrap';
-import Api from '../../Api';
-import Address from '../../Types/IAddress';
-import Job from '../../Types/IJob';
-import JobStatus from '../../Types/IJobStatus';
-import Price from '../../Types/IPrice';
+import { getUsers, getPriceCats } from '../../api';
+import Address from '../../types/IAddress';
+import Job from '../../types/IJob';
+import JobStatus from '../../types/IJobStatus';
+import Price from '../../types/IPrice';
 
 interface PropTypes {
   job: Job;
@@ -167,17 +168,18 @@ const JobNotesForm: React.FC<PropTypes> = (props) => {
 const JobPricingForm: React.FC<PropTypes> = (props) => {
   const { job, setJob } = props;
 
-  const emptyPrice: Price = { description: '', price: 0 };
+  const emptyPrice: Price = { description: '', staff: '', price: 0 };
 
   const [newPrice, setNewPrice] = useState<Price>({
     description: '',
+    staff: '',
     price: 0,
   });
 
   const [priceCategories, setPriceCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    Api.getPriceCats().then((data) =>
+    getPriceCats().then((data) =>
       setPriceCategories(data.map((priceCat) => priceCat.description))
     );
   }, []);
@@ -187,6 +189,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
     job.pricing.map((element, index) => (
       <tr key={index}>
         <td>{element.description}</td>
+        <td>{element.staff}</td>
         <td className="text-right">${Number(element.price).toFixed(2)}</td>
         <td>
           <a
@@ -223,6 +226,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
         <thead>
           <tr>
             <th>Description</th>
+            <th>By</th>
             <th className="text-center">Price</th>
             <th></th>
           </tr>
@@ -246,7 +250,15 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
                 ))}
               </datalist>
             </td>
-            <td width="90">
+            <td width="60">
+              <StaffPicker
+                value={newPrice.staff || ''}
+                onChange={(e) =>
+                  setNewPrice({ ...newPrice, staff: e.target.value })
+                }
+              />
+            </td>
+            <td width="60">
               <Form.Control
                 className="text-right"
                 type="text"
@@ -277,6 +289,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
             <td>
               <strong>Total</strong>
             </td>
+            <td></td>
             <td className="text-right">
               <strong>${getTotalPrice()}</strong>
             </td>
@@ -370,7 +383,7 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
   const [staffList, setStaffList] = useState<string[]>([]);
 
   useEffect(() => {
-    Api.getUsers().then((data) =>
+    getUsers().then((data) =>
       setStaffList(data.map((staff) => staff.initials))
     );
   }, []);
@@ -425,20 +438,11 @@ const JobStatusForm: React.FC<PropTypes> = (props) => {
           </Form.Group>
           <Form.Group as={Col} className="d-flex">
             <Form.Label className="mr-2">By</Form.Label>
-            <Form.Control
-              type="select"
-              list="staff-list"
-              size="sm"
+            <StaffPicker
               value={job.completedBy}
-              name="completedBy"
               onChange={(e) => handleChange(e, job, setJob)}
               disabled={job.status !== JobStatus.Completed}
             />
-            <datalist id="staff-list">
-              {staffList.map((initials) => (
-                <option key={initials} value={initials} />
-              ))}
-            </datalist>
           </Form.Group>
         </Form.Row>
       </Form.Group>

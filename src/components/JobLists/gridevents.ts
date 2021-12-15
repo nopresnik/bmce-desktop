@@ -1,6 +1,6 @@
-import Helpers from '../../Helpers';
-import APIResult from '../../Types/IAPIResult';
-import Job from '../../Types/IJob';
+import Helpers from '../../helpers';
+import APIResult from '../../types/IAPIResult';
+import Job from '../../types/IJob';
 
 const openJob = (params: APIResult<Job>): void => {
   return Helpers.openJob(params.data.jobID);

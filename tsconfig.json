@@ -5,14 +5,10 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    // "baseUrl": "./src",
+    "baseUrl": "src",
     "jsx": "react",
     "outDir": "./dist",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "paths": {
-      "*": ["./node_modules/*"],
-      "src": ["./src"]
-    }
+    "resolveJsonModule": true
   }
 }
