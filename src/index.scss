@@ -3,6 +3,11 @@
 $body-bg: #f3f6f3;
 $enable-rounded: false;
 
+$theme-colors: (
+  'primary': #4c9628,
+  'bm-green': #4c9628,
+);
+
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 

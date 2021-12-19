@@ -1,6 +1,6 @@
-import helpers from '../../Helpers';
-import APIResult from '../../Types/IAPIResult';
-import Job from '../../Types/IJob';
+import helpers from '../../helpers';
+import APIResult from '../../types/IAPIResult';
+import Job from '../../types/IJob';
 
 const dateParser = (job: APIResult<Job>): string => {
   const { date } = job.data;

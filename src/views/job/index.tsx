@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import Api from '../../Api';
-import Client from '../../Types/IClient';
-import Job from '../../Types/IJob';
+import {
+  getJob,
+  deleteJob,
+  patchJob,
+  createClient,
+  postJob,
+  recoverJob,
+} from '../../api';
+import Client from '../../types/IClient';
+import Job from '../../types/IJob';
 import ClientForm from './ClientForm';
 import JobForm from './JobForm';
 import PrevRefForm from './PrevRefForm';
 
-const Job: React.FC<Record<string, never>> = () => {
+const Job: React.FC = () => {
   const { jobID } = useParams<{ jobID: string }>();
 
   const [job, setJob] = useState({} as Job);
@@ -18,14 +25,14 @@ const Job: React.FC<Record<string, never>> = () => {
 
   const init = (jobRef?: string) => {
     if (jobID) {
-      return Api.getJob(jobID).then(({ data }) => {
+      return getJob(jobID).then(({ data }) => {
         setJob(data.data);
         setClient(data.data.client);
       });
     }
 
     if (jobRef && !jobID) {
-      return Api.getJob(jobRef).then(({ data }) => {
+      return getJob(jobRef).then(({ data }) => {
         let job = data.data;
         // Add the previous reference to the job
         job = { ...job, previousRefs: [parseInt(jobRef)] };
@@ -60,7 +67,7 @@ const Job: React.FC<Record<string, never>> = () => {
   const handleSaveJob = async () => {
     console.log(job);
     if (jobID) {
-      const result = await Api.patchJob(job);
+      const result = await patchJob(job);
 
       if (result.data.success) {
         window.close();
@@ -72,10 +79,10 @@ const Job: React.FC<Record<string, never>> = () => {
       if (client._id) {
         ourjob.client = client._id;
       } else {
-        const newClient = await Api.createClient(client);
+        const newClient = await createClient(client);
         ourjob.client = newClient._id;
       }
-      const result = await Api.postJob(job);
+      const result = await postJob(job);
 
       if (result.data.success) {
         window.close();
@@ -88,12 +95,12 @@ const Job: React.FC<Record<string, never>> = () => {
   const handleDeleteJob = async () => {
     if (isDeleted) {
       // Recover the job
-      Api.recoverJob(job.jobID).then(() => {
+      recoverJob(job.jobID).then(() => {
         setJob({ ...job, deleted: false });
       });
     } else {
       // Delete the job
-      Api.deleteJob(job.jobID).then(() => {
+      deleteJob(job.jobID).then(() => {
         setJob({ ...job, deleted: true });
       });
     }
@@ -155,7 +162,7 @@ const Job: React.FC<Record<string, never>> = () => {
           >
             Cancel
           </Button>
-          <Button variant="success" size="sm" onClick={handleSaveJob}>
+          <Button size="sm" onClick={handleSaveJob}>
             Save Changes
           </Button>
         </Col>

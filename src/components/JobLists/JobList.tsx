@@ -2,8 +2,8 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useEffect, useState } from 'react';
-import Api from '../../Api';
-import Pusher from '../../Helpers/Pusher';
+import { getJobs as apiGetJobs } from '../../api';
+import Pusher from '../../helpers/Pusher';
 import gridevents from './gridevents';
 
 interface PropTypes {
@@ -29,7 +29,7 @@ const JobList: React.FC<PropTypes> = ({ getJobs, children }) => {
   }, []);
 
   const fetchJobs = () => {
-    Api.getJobs(getJobs).then(({ data }) => setRowData(data.data));
+    apiGetJobs(getJobs).then(({ data }) => setRowData(data.data));
   };
 
   const onGridReady = (params: AgGridReactProps) => {

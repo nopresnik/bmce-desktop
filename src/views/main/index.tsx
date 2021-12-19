@@ -1,12 +1,12 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Route } from 'react-router';
-import ActionBar from '../../Components/ActionBar';
-import JobLists from '../../Components/JobLists/JobLists';
-import JobNavBar from '../../Components/JobNavBar';
+import ActionBar from '../../components/ActionBar';
+import JobLists from '../../components/JobLists/JobLists';
+import JobNavBar from '../../components/JobNavBar';
 import Sidebar from './Sidebar';
 
-const Main: React.FC<Record<string, never>> = () => {
+const Main: React.FC = () => {
   return (
     <Container fluid>
       <Row>

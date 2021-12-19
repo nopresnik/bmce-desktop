@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
-import Helpers from '../../Helpers';
+import Helpers from '../../helpers';
 
-const QuickView: React.FC<Record<string, never>> = () => {
+const QuickView: React.FC = () => {
   const jobNo = useRef<HTMLInputElement>();
 
   const handleOpen = () => {
@@ -24,9 +24,7 @@ const QuickView: React.FC<Record<string, never>> = () => {
           }
         }}
       />
-      <Button variant="secondary" onClick={handleOpen}>
-        Open
-      </Button>
+      <Button onClick={handleOpen}>Open</Button>
     </InputGroup>
   );
 };

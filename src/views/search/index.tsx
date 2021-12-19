@@ -2,16 +2,16 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { AgGridColumn, AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React, { useState } from 'react';
-import Api from '../../Api';
-import { default as valueGetters } from '../../Components/JobLists/valueGetters';
+import { getJobs } from '../../api';
+import { default as valueGetters } from '../../components/JobLists/valueGetters';
 
-const Search: React.FC<Record<string, never>> = () => {
+const Search: React.FC = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [rowData, setRowData] = useState(null);
 
   const fetchJobs = () => {
-    Api.getJobs().then(({ data }) => {
+    getJobs().then(({ data }) => {
       setRowData(data.data);
     });
   };
