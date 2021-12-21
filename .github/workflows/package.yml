@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bmce-desktop-win32-x64
-          path: out/bmce-desktop-win32-x64/
+          path: out/
         
   build-macos:
     runs-on: macos-latest
@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bmce-desktop-darwin-x64
-          path: out/bmce-desktop-darwin-x64/
+          path: out/
         
         
   create-release:
