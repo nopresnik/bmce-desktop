@@ -18,9 +18,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Package application
         run: yarn package
+        
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: packaged-app
+          path: out/
