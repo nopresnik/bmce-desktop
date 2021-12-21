@@ -21,6 +21,5 @@ jobs:
       - name: Install dependencies
       - uses: actions/checkout@v2
       - run: yarn install --frozen-lockfile
-      
       - name: Package application
       - run: yarn package
