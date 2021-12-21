@@ -29,6 +29,7 @@ jobs:
           path: out/
         
   build-macos:
+    if: false
     runs-on: macos-latest
     steps:
       - name: Checkout repository
