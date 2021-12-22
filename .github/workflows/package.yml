@@ -6,7 +6,7 @@ name: Package application
 # or API.
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -15,42 +15,43 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Package application
         run: yarn package
-        
+        env:
+          REACT_APP_API_URL: http://192.168.0.5:3001/api
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: bmce-desktop-win32-x64
           path: out/
-        
+
   build-macos:
     if: false
     runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Package application
         run: yarn package
-        
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: bmce-desktop-darwin-x64
           path: out/
-        
-        
+
   create-release:
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - build-windows
       - build-macos
     steps:
