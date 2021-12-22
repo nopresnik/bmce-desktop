@@ -5,7 +5,7 @@ import Job from '../types/IJob';
 import PriceCategory from '../types/IPriceCategory';
 import User from '../types/IUser';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 export const getJobs = (status?: string): Promise<AxiosResponse> => {
   if (status) return axios.get(API_URL + '/jobs/s/' + status);
