@@ -211,8 +211,11 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
     (job.pricing && job.pricing.reduce((a, b) => a + b.price, 0).toFixed(2)) ||
     Number(0).toFixed(2);
 
+  const hasInitials = !!newPrice.staff;
+
   const handlePriceUpdate = (e: any) => {
     e.preventDefault();
+    if (!hasInitials) return;
     const updatedList = job.pricing || [];
     updatedList.push(newPrice);
     setJob({ ...job, pricing: updatedList });
@@ -256,6 +259,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
                 onChange={(e) =>
                   setNewPrice({ ...newPrice, staff: e.target.value })
                 }
+                isInvalid={!hasInitials}
               />
             </td>
             <td width="60">
@@ -279,7 +283,7 @@ const JobPricingForm: React.FC<PropTypes> = (props) => {
             </td>
             <td>
               <a href="" onClick={handlePriceUpdate}>
-                <i className="bi-plus-lg text-success"></i>
+                <i className={`bi-plus-lg ${hasInitials ? 'text-success' : 'text-muted'}`}></i>
               </a>
             </td>
           </tr>
