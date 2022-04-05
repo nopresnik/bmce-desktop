@@ -6,6 +6,7 @@ type StaffPickerProps = {
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  isInvalid?: boolean;
 };
 
 export const StaffPicker: React.VFC<StaffPickerProps> = (props) => {
@@ -27,6 +28,7 @@ export const StaffPicker: React.VFC<StaffPickerProps> = (props) => {
         name="completedBy"
         onChange={props.onChange}
         disabled={props.disabled}
+        isInvalid={props.isInvalid}
       />
       <datalist id="staff-list">
         {staffList.map((initials) => (
