@@ -3,6 +3,7 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Form } from 'react-bootstrap';
 
 type StaffPickerProps = {
+  name?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
@@ -25,7 +26,7 @@ export const StaffPicker: React.VFC<StaffPickerProps> = (props) => {
         list="staff-list"
         size="sm"
         value={props.value}
-        name="completedBy"
+        name={props.name || 'completedBy'}
         onChange={props.onChange}
         disabled={props.disabled}
         isInvalid={props.isInvalid}

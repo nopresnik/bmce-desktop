@@ -5,7 +5,6 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "baseUrl": "src",
     "jsx": "react",
     "outDir": "./dist",
     "moduleResolution": "node",

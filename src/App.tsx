@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import ClientBook from './views/clientbook';
 import Job from './views/job';
+import { JobFormProvider } from './views/job/JobFormProvider';
 import Main from './views/main';
 import Search from './views/search';
 
@@ -16,10 +17,14 @@ const App: React.FC = () => {
           <ClientBook />
         </Route>
         <Route exact path="/job/">
-          <Job />
+          <JobFormProvider>
+            <Job />
+          </JobFormProvider>
         </Route>
         <Route exact path="/job/:jobID/">
-          <Job />
+          <JobFormProvider>
+            <Job />
+          </JobFormProvider>
         </Route>
         <Route exact path="/*">
           <Main />
