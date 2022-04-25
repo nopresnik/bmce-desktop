@@ -18,9 +18,9 @@ const JobNavBar: React.FC = () => {
   // }, []);
 
   return (
-    <Nav variant="tabs" defaultActiveKey="#/" className="mt-1 job-nav-bar">
+    <Nav variant="tabs" defaultActiveKey="#/jobs/" className="mt-1 job-nav-bar">
       <Nav.Item>
-        <Nav.Link href="#/">
+        <Nav.Link href="#/jobs/">
           Active
           {/* <StatPill
             variant="secondary"
@@ -29,13 +29,13 @@ const JobNavBar: React.FC = () => {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="#/hold">
+        <Nav.Link href="#/jobs/hold">
           On Hold
           {/* <StatPill variant="secondary" content={(stats && stats.hold) || 0} /> */}
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="#/awaitinginvoicing">
+        <Nav.Link href="#/jobs/awaitinginvoicing">
           Awaiting Invoicing
           {/* <StatPill
             variant="secondary"
@@ -44,7 +44,7 @@ const JobNavBar: React.FC = () => {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="#/unpaid">
+        <Nav.Link href="#/jobs/unpaid">
           Unpaid
           {/* <StatPill
             variant="secondary"
@@ -53,7 +53,7 @@ const JobNavBar: React.FC = () => {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="#/completed">Completed</Nav.Link>
+        <Nav.Link href="#/jobs/completed">Completed</Nav.Link>
       </Nav.Item>
     </Nav>
   );

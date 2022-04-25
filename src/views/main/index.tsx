@@ -1,9 +1,9 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Route } from 'react-router';
-import ActionBar from '../../components/ActionBar';
-import JobLists from '../../components/JobLists/JobLists';
-import JobNavBar from '../../components/JobNavBar';
+import { Col, Container, Nav, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { MainWrapper } from '../../components';
+import { Jobs } from './Jobs/Jobs';
+import { Registers } from './Registers/Registers';
 import Sidebar from './Sidebar';
 
 const Main: React.FC = () => {
@@ -14,23 +14,10 @@ const Main: React.FC = () => {
           <Sidebar />
         </Col>
         <Col xl={10} md={9} sm={12} className="vh-100 d-flex flex-column">
-          <ActionBar />
-          <JobNavBar />
-          <Route exact path="/">
-            <JobLists.Active />
-          </Route>
-          <Route exact path="/hold">
-            <JobLists.Hold />
-          </Route>
-          <Route exact path="/awaitinginvoicing">
-            <JobLists.Invoicing />
-          </Route>
-          <Route exact path="/unpaid">
-            <JobLists.Unpaid />
-          </Route>
-          <Route exact path="/completed">
-            <JobLists.Completed />
-          </Route>
+          <MainWrapper>
+            <Jobs />
+            <Registers />
+          </MainWrapper>
         </Col>
       </Row>
     </Container>

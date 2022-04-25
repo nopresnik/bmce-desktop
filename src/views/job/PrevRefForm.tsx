@@ -1,17 +1,14 @@
 import React, { useRef } from 'react';
 import { Form } from 'react-bootstrap';
+import { useJobForm } from './JobFormProvider';
 
-interface PropTypes {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setPrevRef: (jobRef: string) => void;
-}
-
-const PrevRefForm: React.FC<PropTypes> = ({ setPrevRef }) => {
+const PrevRefForm: React.FC = () => {
+  const { fetchJobAsPrevRef } = useJobForm();
   const jobID = useRef<HTMLInputElement>();
 
   const handleOnBlur = () => {
     // Handle pre filling the job.
-    setPrevRef(jobID.current.value);
+    fetchJobAsPrevRef(+jobID.current.value);
   };
 
   return (
